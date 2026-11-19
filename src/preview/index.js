@@ -1,7 +1,7 @@
 // Each loader returns a factory so a superseded request never constructs a model.
 const models = new Map([
-  ['worker-sanger', () => import('../../../character-benchmark/src/models/worker.js').then(m => m.createWorker)],
-  ['chef-sanger', () => import('../../../character-benchmark/src/models/chef.js').then(m => m.createChef)],
+  ['worker-sanger', () => import('../models/worker.js').then(m => m.createWorker)],
+  ['chef-sanger', () => import('../models/chef.js').then(m => m.createChef)],
 ]);
 
 export const PREVIEW_VIEWS = Object.freeze(['front', 'three-quarter', 'side', 'back']);
