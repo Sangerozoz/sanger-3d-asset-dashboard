@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "activeBaseline": {
+    "schemaVersion": 1,
+    "styles": {
+      "sanger-rounded-toy": {
+        "version": "1.0.0",
+        "assets": {
+          "worker-sanger": "baselines/sanger-rounded-toy/character/worker-sanger",
+          "chef-sanger": "baselines/sanger-rounded-toy/character/chef-sanger"
+        }
+      }
+    }
+  },
+  "fixedViews": [
+    "front",
+    "three-quarter",
+    "side",
+    "back",
+    "clay"
+  ],
+  "filters": {
+    "styleIds": [
+      "sanger-rounded-toy"
+    ],
+    "assetTypes": [
+      "character"
+    ],
+    "statuses": [
+      "accepted"
+    ]
+  },
+  "assets": [
+    {
+      "key": "baselines/sanger-rounded-toy/character/chef-sanger",
+      "assetId": "chef-sanger",
+      "styleId": "sanger-rounded-toy",
+      "assetType": "character",
+      "version": "1.0.0",
+      "status": "accepted",
+      "isActive": true,
+      "screenshots": {
+        "front": "catalog-media/c87dfda652401856b131cf476ec32bc2daf0dbef79ab03fd975287c85200c59f.jpg",
+        "three-quarter": "catalog-media/8f80dd2d1f6d3bb6e6c4bf4151f68cbf01ed9e19ce6a17b0fbaf8b5ca075ce82.jpg",
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [
+        "front",
+        "three-quarter",
+        "side",
+        "back",
+        "clay"
+      ],
+      "sourceFiles": [
+        "chef.js"
+      ],
+      "references": [],
+      "generatedAt": "2026-11-19T04:05:46.788Z",
+      "validation": {
+        "status": "fail",
+        "generatedAt": "2026-11-19T04:28:45.226Z",
+        "checks": {
+          "directory": true,
+          "manifest": true,
+          "manifestJson": true,
+          "sourceFiles": true,
+          "referenceFiles": true,
+          "views": {
+            "front": true,
+            "three-quarter": true,
+            "side": false,
+            "back": false
+          },
+          "clay": true,
+          "acceptedReadOnlyHint": true
+        },
+        "scores": null,
+        "errors": [
+          "required screenshot missing: side",
+          "required screenshot missing: back"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "key": "baselines/sanger-rounded-toy/character/worker-sanger",
+      "assetId": "worker-sanger",
+      "styleId": "sanger-rounded-toy",
+      "assetType": "character",
+      "version": "1.0.0",
+      "status": "accepted",
+      "isActive": true,
+      "screenshots": {
+        "front": "catalog-media/e1eca8e0542fa98ea36bf4eb610c07dddb5bc83f4721da1e6fc1cc5ae72e49ac.jpg",
+        "three-quarter": "catalog-media/a309d00adfdc73727c4dd9aa0f7278256767c42fb21b3794e5fd1bc09adee7bc.jpg",
+        "side": "catalog-media/e0c454aafae4a6edac98d45133c2db16fd838e02ca67cfbc61b47072a2ced466.jpg",
+        "back": "catalog-media/73821a5859e45b7cf9e816899236e2e9406890d71ba760614c1136089253c3da.jpg",
+        "clay": null
+      },
+      "declaredViews": [
+        "front",
+        "three-quarter",
+        "side",
+        "back",
+        "clay"
+      ],
+      "sourceFiles": [
+        "worker.js"
+      ],
+      "references": [
+        {
+          "file": "reference.png",
+          "url": "catalog-media/3a109b862380ab7210da9c70d6f21d8f2eebb87feb67ac591eb4a3b729736fe7.png"
+        }
+      ],
+      "generatedAt": "2026-11-19T04:05:46.811Z",
+      "validation": {
+        "status": "pass",
+        "generatedAt": "2026-11-19T04:29:07.124Z",
+        "checks": {
+          "directory": true,
+          "manifest": true,
+          "manifestJson": true,
+          "sourceFiles": true,
+          "referenceFiles": true,
+          "views": {
+            "front": true,
+            "three-quarter": true,
+            "side": true,
+            "back": true
+          },
+          "clay": true,
+          "acceptedReadOnlyHint": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": []
+      }
+    }
+  ]
+}

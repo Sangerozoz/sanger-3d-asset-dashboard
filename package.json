@@ -1,0 +1,21 @@
+{
+  "name": "sanger-3d-asset-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "catalog:build": "node scripts/build-asset-index.mjs",
+    "catalog:check": "node scripts/build-asset-index.mjs --check",
+    "test": "node --test scripts/asset-source.test.mjs",
+    "dev": "vite --host 0.0.0.0 --port 5180",
+    "build": "npm run catalog:check && vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 5180",
+    "check:data": "npm run catalog:check && npm test"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "vite": "7.2.2"
+  }
+}
