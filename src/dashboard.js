@@ -54,18 +54,31 @@ function action(label, cls, fn) {
   button.onclick = fn;
   return button;
 }
-function renderFilterOptions(group, name, allLabel, values, format) {
+const assetNames = { 'worker-sanger': '小工匠（Sanger）', 'chef-sanger': '自由厨师（Sanger）' };
+
+export function displayAssetName(record) {
+  return assetNames[record.assetId] || record.displayName || record.assetId;
+}
+
+export function filterAssetRecords(records, query = '', activeFilters = []) {
+  const normalizedQuery = query.trim().toLowerCase();
+  return records.filter(asset => {
+    const matchesQuery = [asset.name, asset.assetId].some(value => value?.toLowerCase().includes(normalizedQuery));
+    const matchesFilters = activeFilters.every(([field, value]) => !value || asset[field] === value);
+    return matchesQuery && matchesFilters;
+  });
+}
+
+function renderFilterOptions(group, field, allLabel, values, format) {
   group.replaceChildren(...['', ...values].map(value => {
-    const input = el('input');
-    input.type = 'radio';
-    input.name = name;
-    input.value = value;
-    input.checked = value === '';
-    return el('label', 'assetlib-filter-option', input, el('span', '', value ? format(value) : allLabel));
+    const option = action(value ? format(value) : allLabel, 'assetlib-filter-option', () => {});
+    option.dataset.filter = field;
+    option.dataset.value = value;
+    option.setAttribute('aria-pressed', String(value === ''));
+    return option;
   }));
 }
 
-const assetNames = { 'worker-sanger': '小工匠（Sanger）', 'chef-sanger': '自由厨师（Sanger）' };
 const checkNames = { pass: '通过', fail: '失败', unvalidated: '未验证', review_required: '待人工验收' };
 const valueOr = (value, empty = '未提供') => value === undefined || value === null || value === '' ? empty : String(value);
 const arrayText = values => Array.isArray(values) && values.length ? values.join('、') : '未提供';
@@ -88,7 +101,7 @@ function metadataList(items, cls = 'assetlib-meta-list') {
 export function mountAssetDashboard(root, { index, previewAdapter }) {
   const assets = index.assets.map(record => ({
     ...record,
-    name: record.displayName || assetNames[record.assetId] || record.assetId,
+    name: displayAssetName(record),
     shots: index.fixedViews.filter(view => record.screenshots[view])
       .map(view => ({ view, url: record.screenshots[view] })),
     benchmarkFraming: record.styleId === 'sanger-rounded-toy' && record.assetId in assetNames,
@@ -124,9 +137,18 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   const filterForm = el('form', 'assetlib-tools',
     el('fieldset', 'assetlib-filter-group', el('legend', '', '分类'), categoryOptions),
     el('fieldset', 'assetlib-filter-group', el('legend', '', '风格类型'), styleOptions));
-  filterForm.onchange = updateList;
+  filterForm.onclick = event => {
+    const option = event.target.closest('button[data-filter]');
+    if (!option || !filterForm.contains(option)) return;
+    for (const sibling of filterForm.querySelectorAll(`button[data-filter=\"${option.dataset.filter}\"]`)) {
+      sibling.setAttribute('aria-pressed', String(sibling === option));
+    }
+    updateList();
+  };
   const list = el('div', 'assetlib-list');
   const backdrop = el('div', 'assetlib-drawer-backdrop');
+  backdrop.setAttribute('aria-hidden', 'true');
+  backdrop.setAttribute('tabindex', '-1');
   const detail = el('aside', 'assetlib-panel assetlib-detail');
   detail.setAttribute('aria-label', '资产详情');
   const close = action('', 'assetlib-drawer-close', () => closeDrawer());
@@ -195,9 +217,9 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   function updateList() {
     updateSearchState();
     const query = search.value.trim().toLowerCase();
-    const activeFilters = [...new FormData(filterForm)];
-    const visible = sectionAssets.filter(a => [a.name, a.assetId].some(v => v?.toLowerCase().includes(query)) &&
-      activeFilters.every(([field, value]) => !value || a[field] === value));
+    const activeFilters = [...filterForm.querySelectorAll('button[data-filter][aria-pressed=\"true\"]')]
+      .map(option => [option.dataset.filter, option.dataset.value]);
+    const visible = filterAssetRecords(sectionAssets, query, activeFilters);
     if (selected && !visible.includes(selected)) closeDrawer();
     list.replaceChildren(...visible.map(a => {
       const card = action('', 'assetlib-card', () => openDrawer(a));

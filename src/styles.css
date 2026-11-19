@@ -108,7 +108,7 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-placeholder, .assetlib-no-selection { display: grid; align-content: center; justify-items: center; gap: 12px; color: var(--muted); }
 .assetlib-placeholder .assetlib-icon, .assetlib-no-selection .assetlib-icon { width: 32px; height: 32px; }
 .assetlib-no-selection { min-height: 350px; }
-.assetlib-empty { text-align: center; color: var(--muted); padding: 30px 10px; }
+.assetlib-empty { display: grid; grid-column: 1 / -1; place-items: center; min-height: clamp(260px, 42vh, 460px); text-align: center; color: var(--muted); padding: 30px 10px; }
 .assetlib-detail-section { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
 .assetlib-meta-list { display: grid; gap: 9px; margin-top: 10px; }
 .assetlib-meta-list > div { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 10px; align-items: start; }
@@ -137,14 +137,14 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-library { min-height: calc(100vh - 124px); }
 .assetlib-library > .assetlib-panel-title { padding: 18px 22px 14px; }
 .assetlib-panel-title h1 { min-width: 0; font-size: 24px; letter-spacing: -.04em; white-space: nowrap; }
-.assetlib-filter-group { min-width: 0; margin: 0; padding: 0 22px 12px; border: 0; }
+.assetlib-tools { display: flex; align-items: flex-start; gap: 24px; padding: 0 22px 12px; }
+.assetlib-filter-group { min-width: 0; margin: 0; padding: 0; border: 0; }
 .assetlib-filter-group legend { margin-bottom: 6px; padding: 0; color: var(--muted); font-size: 11px; }
 .assetlib-filter-options { display: flex; flex-wrap: wrap; gap: 6px; }
-.assetlib-filter-option { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: #fff; font-size: 12px; cursor: pointer; transition: border-color .16s ease, color .16s ease, background-color .16s ease; }
+.assetlib-filter-option { min-height: 30px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: #fff; font-size: 12px; cursor: pointer; transition: border-color .16s ease, color .16s ease, background-color .16s ease; }
 .assetlib-filter-option:hover { border-color: #b9c9bb; background: #fdfefd; }
-.assetlib-filter-option:has(input:checked) { border-color: #8fb59b; background: #edf4ec; color: var(--accent); }
-.assetlib-filter-option input { margin: 0; accent-color: var(--accent); }
-.assetlib-filter-option input:focus-visible { outline: 2px solid #52896f; outline-offset: 2px; }
+.assetlib-filter-option[aria-pressed=true] { border-color: #8fb59b; background: #edf4ec; color: var(--accent); }
+.assetlib-filter-option:focus-visible { outline: 2px solid #52896f; outline-offset: 2px; }
 .assetlib-list { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; padding: 18px 22px 26px; }
 .assetlib-dashboard .assetlib-card { display: grid; min-width: 0; padding: 0; overflow: hidden; text-align: left; border: 1px solid var(--line); border-radius: 9px; background: #fff; box-shadow: 0 1px 1px #25343009; transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease; }
 .assetlib-dashboard .assetlib-card:hover { transform: translateY(-2px); border-color: #a7c0ae; box-shadow: 0 7px 20px #25343012; }
@@ -170,7 +170,8 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 @media (max-width: 700px) {
   .assetlib-content { padding: 18px 12px 28px; }
   .assetlib-panel-title { align-items: flex-start; flex-wrap: wrap; }
-  .assetlib-panel-title .assetlib-search { width: min(350px, 100%); flex: 1 1 350px; }
+  .assetlib-tools { gap: 12px; }
+  .assetlib-panel-title .assetlib-search { width: min(350px, 100%); max-width: 100%; flex: 1 1 350px; }
   .assetlib-search-clear { width: 28px; height: 28px; }
   .assetlib-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding-inline: 12px; }
   .assetlib-card-photo { min-height: 154px; }
