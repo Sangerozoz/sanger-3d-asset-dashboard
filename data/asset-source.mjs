@@ -1,5 +1,16 @@
 import { resolveAnimationUrls } from './asset-types.mjs';
 
+const animationRigDisplayNames = Object.freeze({
+  rig_medium_combatmelee: '近战动作',
+  rig_medium_combatranged: '远程战斗动作',
+  rig_medium_general: '通用动作',
+  rig_medium_movementadvanced: '进阶移动动作',
+  rig_medium_movementbasic: '基础移动动作',
+  rig_medium_simulation: '模拟动作',
+  rig_medium_special: '特殊动作',
+  rig_medium_tools: '工具使用动作',
+});
+
 // All media paths in the raw catalog are relative to the catalog file itself.
 export async function loadAssetIndex(indexUrl = new URL('assets/asset-index.json', document.baseURI)) {
   const response = await fetch(indexUrl);
@@ -14,6 +25,10 @@ export async function loadAssetIndex(indexUrl = new URL('assets/asset-index.json
       screenshots: Object.fromEntries(Object.entries(revision.screenshots).map(([view, url]) => [view, resolveMedia(url)])),
       references: revision.references.map(reference => ({ ...reference, url: resolveMedia(reference.url) })),
       ...(revision.animation ? { animation: resolveAnimationUrls(revision.animation, response.url) } : {}),
+      ...(!revision.displayName && revision.assetType === 'animation-rig'
+        && Object.hasOwn(animationRigDisplayNames, revision.assetId)
+        ? { displayName: animationRigDisplayNames[revision.assetId] }
+        : {}),
     })),
   };
 }

@@ -3,11 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>三维资产管理</title>
+  <title>游戏资产</title>
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <main id="app" data-index-url="./assets/asset-index.json" aria-label="三维资产管理"></main>
+  <main id="app" data-index-url="./assets/asset-index.json" aria-label="游戏资产"></main>
+  <script>
+    (() => {
+      const root = document.querySelector('#app');
+      const retry = () => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('reload', Date.now().toString(36));
+        window.location.replace(url.href);
+      };
+      window.__showBootError = (error, stage, resourceUrl) => {
+        const message = error instanceof Error ? error.message : String(error || '未知错误');
+        root.innerHTML = '';
+        const panel = document.createElement('section');
+        panel.className = 'ad-boot-error';
+        panel.setAttribute('role', 'alert');
+        panel.innerHTML = '<h1>页面加载失败</h1>';
+        const details = document.createElement('p');
+        details.textContent = message;
+        const meta = document.createElement('p');
+        meta.className = 'ad-boot-error-meta';
+        meta.textContent = `阶段：${stage} · 资源：${resourceUrl || document.baseURI}`;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = '重新加载';
+        button.onclick = retry;
+        panel.append(details, meta, button);
+        root.append(panel);
+      };
+      window.addEventListener('error', event => {
+        if (event.target?.tagName === 'SCRIPT') window.__showBootError('资源加载失败', '入口脚本', event.target.src);
+      }, true);
+    })();
+  </script>
   <script type="module" src="./main.js"></script>
 </body>
 </html>

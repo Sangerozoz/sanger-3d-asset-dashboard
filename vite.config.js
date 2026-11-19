@@ -22,6 +22,13 @@ export default defineConfig({
   },
   preview: { host: '0.0.0.0', port: 5180 },
   build: {
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/app.js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name][extname]',
+      },
+    },
     outDir: path.resolve(dashboardRoot, 'dist'),
     emptyOutDir: true,
   },

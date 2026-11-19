@@ -11,6 +11,7 @@ const paths = {
   image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4 18 5-5 3 3 4-6 5 7"/>',
   search: '<circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/>',
   arrow: '<path d="m9 6 6 6-6 6"/>',
+  chevron: '<path d="m7 9 5 5 5-5"/>',
   open: '<path d="M14 4h6v6m0-6-9 9M10 5H5v14h14v-5"/>',
   close: '<path d="M6 6l12 12M18 6 6 18"/>'
 };
@@ -92,20 +93,31 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   let mode = 'image';
   let shotIndex = 0;
   let stopPreview = () => {};
+  let showingAnimations;
+  let sectionAssets;
   const shell = el('div', 'asset-dashboard');
   const search = el('input');
   search.type = 'search';
   search.placeholder = '搜索资产名称或 ID';
   search.setAttribute('aria-label', search.placeholder);
+  search.setAttribute('enterkeyhint', 'search');
+  search.spellcheck = false;
+  const searchClear = el('button', 'ad-search-clear', icon('close'));
+  searchClear.type = 'button';
+  searchClear.setAttribute('aria-label', '清除搜索');
+  searchClear.hidden = true;
+  searchClear.onclick = () => {
+    search.value = '';
+    updateList();
+    search.focus();
+  };
   search.oninput = updateList;
   const category = el('select');
   category.setAttribute('aria-label', '资产分类');
   const typeValues = [...new Set([...assets.map(asset => asset.assetType), ...Object.keys(assetTypeNames)].filter(Boolean))];
-  category.append(new Option('全部分类', ''), ...typeValues.sort().map(value => new Option(assetTypeNames[value] || value, value)));
   category.onchange = updateList;
   const style = el('select');
   style.setAttribute('aria-label', '风格类型');
-  style.append(new Option('全部风格类型', ''), ...uniqueOptions(assets, 'styleId', styleName));
   style.onchange = updateList;
   const reset = action('重置', 'ad-link', () => {
     search.value = '';
@@ -134,22 +146,46 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   }
   const tools = el('div', 'ad-tools',
     el('div', 'ad-toolbar-row',
-      el('label', 'ad-search', icon('search'), search),
-      el('label', 'ad-select-wrap', '分类', category),
-      el('label', 'ad-select-wrap', '风格类型', style),
+      el('label', 'ad-search', icon('search'), search, searchClear),
+      el('label', 'ad-select-wrap', '分类', category, icon('chevron')),
+      el('label', 'ad-select-wrap', '风格类型', style, icon('chevron')),
       reset),
-    el('div', 'ad-filter-foot', el('span', '', '资产'), count));
+    el('div', 'ad-filter-foot', count));
+  const pageTitle = el('h1', '');
   const library = el('section', 'ad-library',
-    el('div', 'ad-panel-title', el('h1', '', '资产'), count),
+    el('div', 'ad-panel-title', pageTitle),
     tools, list);
+  const modelsTab = action('3D 资产', '', () => switchSection(false));
+  const animationsTab = action('骨骼动画', '', () => switchSection(true));
+  const nav = el('nav', 'ad-nav', modelsTab, animationsTab);
+  nav.setAttribute('aria-label', '资产导航');
+  const brandName = '游戏资产';
   shell.append(
-    el('header', 'ad-header', el('div', 'ad-brand', el('span', 'ad-brand-mark', icon('cube')), '三维资产管理'),
-      el('span', 'ad-header-divider'), el('span', 'ad-header-path', '资产工作台')),
+    el('header', 'ad-header', el('div', 'ad-brand', el('span', 'ad-brand-mark', icon('cube')), brandName), nav),
     el('main', 'ad-content', library), backdrop, detail);
+  document.title = brandName;
+  root.setAttribute('aria-label', brandName);
   root.replaceChildren(shell);
   backdrop.onclick = closeDrawer;
   document.addEventListener('keydown', onKeydown);
-  updateList();
+  switchSection(false);
+
+  function switchSection(animations) {
+    if (showingAnimations === animations) return;
+    closeDrawer();
+    showingAnimations = animations;
+    sectionAssets = assets.filter(asset => (asset.assetType === 'animation-rig') === animations);
+    pageTitle.textContent = animations ? animationsTab.textContent : modelsTab.textContent;
+    modelsTab.setAttribute('aria-pressed', String(!animations));
+    animationsTab.setAttribute('aria-pressed', String(animations));
+    const sectionTypes = typeValues.filter(value => (value === 'animation-rig') === animations);
+    category.replaceChildren(new Option('全部分类', ''), ...sectionTypes.sort().map(value => new Option(assetTypeNames[value] || value, value)));
+    style.replaceChildren(new Option('全部风格类型', ''), ...uniqueOptions(sectionAssets, 'styleId', styleName));
+    search.value = '';
+    category.value = '';
+    style.value = '';
+    updateList();
+  }
 
   function onKeydown(event) {
     if (event.key === 'Escape' && shell.classList.contains('drawer-open')) closeDrawer();
@@ -172,11 +208,15 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     stopPreview = () => {};
     detail.replaceChildren(close);
   }
+  function updateSearchState() {
+    searchClear.hidden = !search.value;
+  }
   function updateList() {
+    updateSearchState();
     const query = search.value.trim().toLowerCase();
     const activeFilters = filters();
     reset.disabled = !query && activeFilters.every(([, value]) => !value);
-    const visible = assets.filter(a => [a.name, a.assetId].some(v => v?.toLowerCase().includes(query)) &&
+    const visible = sectionAssets.filter(a => [a.name, a.assetId].some(v => v?.toLowerCase().includes(query)) &&
       activeFilters.every(([field, value]) => !value || a[field] === value));
     if (selected && !visible.includes(selected)) closeDrawer();
     count.textContent = String(visible.length);
