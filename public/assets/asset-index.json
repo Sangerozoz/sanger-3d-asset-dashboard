@@ -21,13 +21,16 @@
   ],
   "filters": {
     "styleIds": [
+      "kaykit-character-animations",
       "sanger-rounded-toy"
     ],
     "assetTypes": [
+      "animation-rig",
       "character"
     ],
     "statuses": [
-      "accepted"
+      "accepted",
+      "candidate"
     ]
   },
   "assets": [
@@ -137,6 +140,617 @@
         "scores": null,
         "errors": [],
         "warnings": []
+      }
+    },
+    {
+      "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_combatmelee",
+      "assetId": "rig_medium_combatmelee",
+      "styleId": "kaykit-character-animations",
+      "assetType": "animation-rig",
+      "version": "1.1.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "manifest.json",
+        "Rig_Medium_CombatMelee.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "animation": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Character Animations 1.1",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+        "license": "CC0-1.0",
+        "licenseUrl": "animation-rigs/kaykit/License.txt",
+        "compatibility": [
+          "Rig_Medium"
+        ],
+        "category": "combat-melee",
+        "tags": [
+          "kaykit",
+          "rig-medium"
+        ],
+        "format": "glb",
+        "fileUrl": "animation-rigs/kaykit/Rig_Medium_CombatMelee.glb",
+        "clips": [
+          "Melee_1H_Attack_Chop",
+          "Melee_1H_Attack_Jump_Chop",
+          "Melee_1H_Attack_Slice_Diagonal",
+          "Melee_1H_Attack_Slice_Horizontal",
+          "Melee_1H_Attack_Stab",
+          "Melee_2H_Attack_Chop",
+          "Melee_2H_Attack_Slice",
+          "Melee_2H_Attack_Spin",
+          "Melee_2H_Attack_Spinning",
+          "Melee_2H_Attack_Stab",
+          "Melee_2H_Idle",
+          "Melee_Block",
+          "Melee_Block_Attack",
+          "Melee_Block_Hit",
+          "Melee_Blocking",
+          "Melee_Dualwield_Attack_Chop",
+          "Melee_Dualwield_Attack_Slice",
+          "Melee_Dualwield_Attack_Stab",
+          "Melee_Unarmed_Attack_Kick",
+          "Melee_Unarmed_Attack_Punch_A",
+          "Melee_Unarmed_Idle",
+          "T-Pose"
+        ]
+      },
+      "validation": {
+        "status": "review_required",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "glb": true,
+          "clips": true,
+          "skin": true,
+          "zipMember": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "Playback and retargeting are not tested; static file validation only."
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_combatranged",
+      "assetId": "rig_medium_combatranged",
+      "styleId": "kaykit-character-animations",
+      "assetType": "animation-rig",
+      "version": "1.1.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "manifest.json",
+        "Rig_Medium_CombatRanged.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "animation": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Character Animations 1.1",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+        "license": "CC0-1.0",
+        "licenseUrl": "animation-rigs/kaykit/License.txt",
+        "compatibility": [
+          "Rig_Medium"
+        ],
+        "category": "combat-ranged",
+        "tags": [
+          "kaykit",
+          "rig-medium"
+        ],
+        "format": "glb",
+        "fileUrl": "animation-rigs/kaykit/Rig_Medium_CombatRanged.glb",
+        "clips": [
+          "Ranged_1H_Aiming",
+          "Ranged_1H_Reload",
+          "Ranged_1H_Shoot",
+          "Ranged_1H_Shooting",
+          "Ranged_2H_Aiming",
+          "Ranged_2H_Reload",
+          "Ranged_2H_Shoot",
+          "Ranged_2H_Shooting",
+          "Ranged_Bow_Aiming_Idle",
+          "Ranged_Bow_Draw",
+          "Ranged_Bow_Draw_Up",
+          "Ranged_Bow_Idle",
+          "Ranged_Bow_Release",
+          "Ranged_Bow_Release_Up",
+          "Ranged_Magic_Raise",
+          "Ranged_Magic_Shoot",
+          "Ranged_Magic_Spellcasting",
+          "Ranged_Magic_Spellcasting_Long",
+          "Ranged_Magic_Summon",
+          "T-Pose"
+        ]
+      },
+      "validation": {
+        "status": "review_required",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "glb": true,
+          "clips": true,
+          "skin": true,
+          "zipMember": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "Playback and retargeting are not tested; static file validation only."
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_general",
+      "assetId": "rig_medium_general",
+      "styleId": "kaykit-character-animations",
+      "assetType": "animation-rig",
+      "version": "1.1.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "manifest.json",
+        "Rig_Medium_General.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "animation": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Character Animations 1.1",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+        "license": "CC0-1.0",
+        "licenseUrl": "animation-rigs/kaykit/License.txt",
+        "compatibility": [
+          "Rig_Medium"
+        ],
+        "category": "general",
+        "tags": [
+          "kaykit",
+          "rig-medium"
+        ],
+        "format": "glb",
+        "fileUrl": "animation-rigs/kaykit/Rig_Medium_General.glb",
+        "clips": [
+          "Death_A",
+          "Death_A_Pose",
+          "Death_B",
+          "Death_B_Pose",
+          "Hit_A",
+          "Hit_B",
+          "Idle_A",
+          "Idle_B",
+          "Interact",
+          "PickUp",
+          "Spawn_Air",
+          "Spawn_Ground",
+          "T-Pose",
+          "Throw",
+          "Use_Item"
+        ]
+      },
+      "validation": {
+        "status": "review_required",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "glb": true,
+          "clips": true,
+          "skin": true,
+          "zipMember": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "Playback and retargeting are not tested; static file validation only."
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_movementadvanced",
+      "assetId": "rig_medium_movementadvanced",
+      "styleId": "kaykit-character-animations",
+      "assetType": "animation-rig",
+      "version": "1.1.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "manifest.json",
+        "Rig_Medium_MovementAdvanced.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "animation": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Character Animations 1.1",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+        "license": "CC0-1.0",
+        "licenseUrl": "animation-rigs/kaykit/License.txt",
+        "compatibility": [
+          "Rig_Medium"
+        ],
+        "category": "movement-advanced",
+        "tags": [
+          "kaykit",
+          "rig-medium"
+        ],
+        "format": "glb",
+        "fileUrl": "animation-rigs/kaykit/Rig_Medium_MovementAdvanced.glb",
+        "clips": [
+          "Crawling",
+          "Crouching",
+          "Dodge_Backward",
+          "Dodge_Forward",
+          "Dodge_Left",
+          "Dodge_Right",
+          "Running_HoldingBow",
+          "Running_HoldingRifle",
+          "Running_Strafe_Left",
+          "Running_Strafe_Right",
+          "Sneaking",
+          "T-Pose",
+          "Walking_Backwards"
+        ]
+      },
+      "validation": {
+        "status": "review_required",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "glb": true,
+          "clips": true,
+          "skin": true,
+          "zipMember": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "Playback and retargeting are not tested; static file validation only."
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_movementbasic",
+      "assetId": "rig_medium_movementbasic",
+      "styleId": "kaykit-character-animations",
+      "assetType": "animation-rig",
+      "version": "1.1.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "manifest.json",
+        "Rig_Medium_MovementBasic.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "animation": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Character Animations 1.1",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+        "license": "CC0-1.0",
+        "licenseUrl": "animation-rigs/kaykit/License.txt",
+        "compatibility": [
+          "Rig_Medium"
+        ],
+        "category": "movement-basic",
+        "tags": [
+          "kaykit",
+          "rig-medium"
+        ],
+        "format": "glb",
+        "fileUrl": "animation-rigs/kaykit/Rig_Medium_MovementBasic.glb",
+        "clips": [
+          "Jump_Full_Long",
+          "Jump_Full_Short",
+          "Jump_Idle",
+          "Jump_Land",
+          "Jump_Start",
+          "Running_A",
+          "Running_B",
+          "T-Pose",
+          "Walking_A",
+          "Walking_B",
+          "Walking_C"
+        ]
+      },
+      "validation": {
+        "status": "review_required",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "glb": true,
+          "clips": true,
+          "skin": true,
+          "zipMember": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "Playback and retargeting are not tested; static file validation only."
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_simulation",
+      "assetId": "rig_medium_simulation",
+      "styleId": "kaykit-character-animations",
+      "assetType": "animation-rig",
+      "version": "1.1.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "manifest.json",
+        "Rig_Medium_Simulation.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "animation": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Character Animations 1.1",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+        "license": "CC0-1.0",
+        "licenseUrl": "animation-rigs/kaykit/License.txt",
+        "compatibility": [
+          "Rig_Medium"
+        ],
+        "category": "simulation",
+        "tags": [
+          "kaykit",
+          "rig-medium"
+        ],
+        "format": "glb",
+        "fileUrl": "animation-rigs/kaykit/Rig_Medium_Simulation.glb",
+        "clips": [
+          "Cheering",
+          "Lie_Down",
+          "Lie_Idle",
+          "Lie_StandUp",
+          "Push_Ups",
+          "Sit_Chair_Down",
+          "Sit_Chair_Idle",
+          "Sit_Chair_StandUp",
+          "Sit_Floor_Down",
+          "Sit_Floor_Idle",
+          "Sit_Floor_StandUp",
+          "Sit_Ups",
+          "T-Pose",
+          "Waving"
+        ]
+      },
+      "validation": {
+        "status": "review_required",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "glb": true,
+          "clips": true,
+          "skin": true,
+          "zipMember": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "Playback and retargeting are not tested; static file validation only."
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_special",
+      "assetId": "rig_medium_special",
+      "styleId": "kaykit-character-animations",
+      "assetType": "animation-rig",
+      "version": "1.1.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "manifest.json",
+        "Rig_Medium_Special.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "animation": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Character Animations 1.1",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+        "license": "CC0-1.0",
+        "licenseUrl": "animation-rigs/kaykit/License.txt",
+        "compatibility": [
+          "Rig_Medium"
+        ],
+        "category": "special",
+        "tags": [
+          "kaykit",
+          "rig-medium"
+        ],
+        "format": "glb",
+        "fileUrl": "animation-rigs/kaykit/Rig_Medium_Special.glb",
+        "clips": [
+          "EXPERIMENTAL_Medium_Transform",
+          "Skeletons_Awaken_Floor",
+          "Skeletons_Awaken_Floor_Long",
+          "Skeletons_Awaken_Standing",
+          "Skeletons_Death",
+          "Skeletons_Death_Pose",
+          "Skeletons_Death_Resurrect",
+          "Skeletons_Idle",
+          "Skeletons_Inactive_Floor_Pose",
+          "Skeletons_Inactive_Standing_Pose",
+          "Skeletons_Spawn_Ground",
+          "Skeletons_Taunt",
+          "Skeletons_Taunt_Longer",
+          "Skeletons_Walking",
+          "T-Pose"
+        ]
+      },
+      "validation": {
+        "status": "review_required",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "glb": true,
+          "clips": true,
+          "skin": true,
+          "zipMember": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "Playback and retargeting are not tested; static file validation only."
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_tools",
+      "assetId": "rig_medium_tools",
+      "styleId": "kaykit-character-animations",
+      "assetType": "animation-rig",
+      "version": "1.1.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "manifest.json",
+        "Rig_Medium_Tools.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "animation": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Character Animations 1.1",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+        "license": "CC0-1.0",
+        "licenseUrl": "animation-rigs/kaykit/License.txt",
+        "compatibility": [
+          "Rig_Medium"
+        ],
+        "category": "tools",
+        "tags": [
+          "kaykit",
+          "rig-medium"
+        ],
+        "format": "glb",
+        "fileUrl": "animation-rigs/kaykit/Rig_Medium_Tools.glb",
+        "clips": [
+          "Chop",
+          "Chopping",
+          "Dig",
+          "Digging",
+          "Fishing_Bite",
+          "Fishing_Cast",
+          "Fishing_Catch",
+          "Fishing_Idle",
+          "Fishing_Reeling",
+          "Fishing_Struggling",
+          "Fishing_Tug",
+          "Hammer",
+          "Hammering",
+          "Holding_A",
+          "Holding_B",
+          "Holding_C",
+          "Lockpick",
+          "Lockpicking",
+          "Pickaxe",
+          "Pickaxing",
+          "Saw",
+          "Sawing",
+          "T-Pose",
+          "Work_A",
+          "Work_B",
+          "Work_C",
+          "Working_A",
+          "Working_B",
+          "Working_C"
+        ]
+      },
+      "validation": {
+        "status": "review_required",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "glb": true,
+          "clips": true,
+          "skin": true,
+          "zipMember": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "Playback and retargeting are not tested; static file validation only."
+        ]
       }
     }
   ]

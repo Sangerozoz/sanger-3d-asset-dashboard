@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "packageId": "kaykit-character-animations",
+  "provider": "KayKit",
+  "sourceName": "KayKit Character Animations 1.1",
+  "sourceUrl": "https://kaylousberg.itch.io/kaykit-character-animations",
+  "license": {
+    "zipMember": "KayKit_Character_Animations_1.1/License.txt",
+    "spdx": "CC0-1.0",
+    "size": 1548,
+    "sha256": "373b159044d1a886ed15f57ca5a7673ba14e2623c460283452705f2056912ed9",
+    "zipChecksumCommand": "unzip -p 'KayKit-Character-Animations-1-1.zip' 'KayKit_Character_Animations_1.1/License.txt' | shasum -a 256"
+  },
+  "verification": {
+    "skeleton": "file-metadata-only",
+    "playback": "unverified",
+    "retargeting": "unverified",
+    "humanReview": "unverified"
+  },
+  "assets": [
+    {
+      "file": "Rig_Medium_CombatMelee.glb",
+      "category": "combat-melee",
+      "zipMember": "KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_CombatMelee.glb",
+      "matchesZipMember": true,
+      "size": 999416,
+      "sha256": "c55e6ec1c79e83ae21d46fe1cd921c1b64be8b9a524a24517e51c6ba99231459",
+      "clips": [
+        "Melee_1H_Attack_Chop",
+        "Melee_1H_Attack_Jump_Chop",
+        "Melee_1H_Attack_Slice_Diagonal",
+        "Melee_1H_Attack_Slice_Horizontal",
+        "Melee_1H_Attack_Stab",
+        "Melee_2H_Attack_Chop",
+        "Melee_2H_Attack_Slice",
+        "Melee_2H_Attack_Spin",
+        "Melee_2H_Attack_Spinning",
+        "Melee_2H_Attack_Stab",
+        "Melee_2H_Idle",
+        "Melee_Block",
+        "Melee_Block_Attack",
+        "Melee_Block_Hit",
+        "Melee_Blocking",
+        "Melee_Dualwield_Attack_Chop",
+        "Melee_Dualwield_Attack_Slice",
+        "Melee_Dualwield_Attack_Stab",
+        "Melee_Unarmed_Attack_Kick",
+        "Melee_Unarmed_Attack_Punch_A",
+        "Melee_Unarmed_Idle",
+        "T-Pose"
+      ],
+      "compatibility": [
+        "Rig_Medium"
+      ],
+      "skinCount": 1,
+      "skinNames": [
+        "Rig_Medium"
+      ]
+    },
+    {
+      "file": "Rig_Medium_CombatRanged.glb",
+      "category": "combat-ranged",
+      "zipMember": "KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_CombatRanged.glb",
+      "matchesZipMember": true,
+      "size": 1014852,
+      "sha256": "7fef1fc0e7b0feafd34b8e12d23f514c8c1f9d068047a691b854b56f1774dff5",
+      "clips": [
+        "Ranged_1H_Aiming",
+        "Ranged_1H_Reload",
+        "Ranged_1H_Shoot",
+        "Ranged_1H_Shooting",
+        "Ranged_2H_Aiming",
+        "Ranged_2H_Reload",
+        "Ranged_2H_Shoot",
+        "Ranged_2H_Shooting",
+        "Ranged_Bow_Aiming_Idle",
+        "Ranged_Bow_Draw",
+        "Ranged_Bow_Draw_Up",
+        "Ranged_Bow_Idle",
+        "Ranged_Bow_Release",
+        "Ranged_Bow_Release_Up",
+        "Ranged_Magic_Raise",
+        "Ranged_Magic_Shoot",
+        "Ranged_Magic_Spellcasting",
+        "Ranged_Magic_Spellcasting_Long",
+        "Ranged_Magic_Summon",
+        "T-Pose"
+      ],
+      "compatibility": [
+        "Rig_Medium"
+      ],
+      "skinCount": 1,
+      "skinNames": [
+        "Rig_Medium"
+      ]
+    },
+    {
+      "file": "Rig_Medium_General.glb",
+      "category": "general",
+      "zipMember": "KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_General.glb",
+      "matchesZipMember": true,
+      "size": 828240,
+      "sha256": "5f725c0f745f36078c7238968cd5c04843cbc6260689eb6e7f5e2bbd7ffdd7ad",
+      "clips": [
+        "Death_A",
+        "Death_A_Pose",
+        "Death_B",
+        "Death_B_Pose",
+        "Hit_A",
+        "Hit_B",
+        "Idle_A",
+        "Idle_B",
+        "Interact",
+        "PickUp",
+        "Spawn_Air",
+        "Spawn_Ground",
+        "T-Pose",
+        "Throw",
+        "Use_Item"
+      ],
+      "compatibility": [
+        "Rig_Medium"
+      ],
+      "skinCount": 1,
+      "skinNames": [
+        "Rig_Medium"
+      ]
+    },
+    {
+      "file": "Rig_Medium_MovementAdvanced.glb",
+      "category": "movement-advanced",
+      "zipMember": "KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_MovementAdvanced.glb",
+      "matchesZipMember": true,
+      "size": 719628,
+      "sha256": "8b2317cf81e3f24149e4b791c27e1932bebd46cd378ed962e7d27d642fad8c56",
+      "clips": [
+        "Crawling",
+        "Crouching",
+        "Dodge_Backward",
+        "Dodge_Forward",
+        "Dodge_Left",
+        "Dodge_Right",
+        "Running_HoldingBow",
+        "Running_HoldingRifle",
+        "Running_Strafe_Left",
+        "Running_Strafe_Right",
+        "Sneaking",
+        "T-Pose",
+        "Walking_Backwards"
+      ],
+      "compatibility": [
+        "Rig_Medium"
+      ],
+      "skinCount": 1,
+      "skinNames": [
+        "Rig_Medium"
+      ]
+    },
+    {
+      "file": "Rig_Medium_MovementBasic.glb",
+      "category": "movement-basic",
+      "zipMember": "KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb",
+      "matchesZipMember": true,
+      "size": 689624,
+      "sha256": "11422afd50abf7e8c92ea107e2e0bc94abd38023d6d15f55ad580347efbfa29e",
+      "clips": [
+        "Jump_Full_Long",
+        "Jump_Full_Short",
+        "Jump_Idle",
+        "Jump_Land",
+        "Jump_Start",
+        "Running_A",
+        "Running_B",
+        "T-Pose",
+        "Walking_A",
+        "Walking_B",
+        "Walking_C"
+      ],
+      "compatibility": [
+        "Rig_Medium"
+      ],
+      "skinCount": 1,
+      "skinNames": [
+        "Rig_Medium"
+      ]
+    },
+    {
+      "file": "Rig_Medium_Simulation.glb",
+      "category": "simulation",
+      "zipMember": "KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_Simulation.glb",
+      "matchesZipMember": true,
+      "size": 855904,
+      "sha256": "ab6ffeed40c8281dd0ce0506534eadf7385151f1c266643a10fa2a0f0a7ba3b1",
+      "clips": [
+        "Cheering",
+        "Lie_Down",
+        "Lie_Idle",
+        "Lie_StandUp",
+        "Push_Ups",
+        "Sit_Chair_Down",
+        "Sit_Chair_Idle",
+        "Sit_Chair_StandUp",
+        "Sit_Floor_Down",
+        "Sit_Floor_Idle",
+        "Sit_Floor_StandUp",
+        "Sit_Ups",
+        "T-Pose",
+        "Waving"
+      ],
+      "compatibility": [
+        "Rig_Medium"
+      ],
+      "skinCount": 1,
+      "skinNames": [
+        "Rig_Medium"
+      ]
+    },
+    {
+      "file": "Rig_Medium_Special.glb",
+      "category": "special",
+      "zipMember": "KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_Special.glb",
+      "matchesZipMember": true,
+      "size": 924308,
+      "sha256": "74047dd2178fbed388656051664158e921b7bfc613abb119860aeb7b646bd640",
+      "clips": [
+        "EXPERIMENTAL_Medium_Transform",
+        "Skeletons_Awaken_Floor",
+        "Skeletons_Awaken_Floor_Long",
+        "Skeletons_Awaken_Standing",
+        "Skeletons_Death",
+        "Skeletons_Death_Pose",
+        "Skeletons_Death_Resurrect",
+        "Skeletons_Idle",
+        "Skeletons_Inactive_Floor_Pose",
+        "Skeletons_Inactive_Standing_Pose",
+        "Skeletons_Spawn_Ground",
+        "Skeletons_Taunt",
+        "Skeletons_Taunt_Longer",
+        "Skeletons_Walking",
+        "T-Pose"
+      ],
+      "compatibility": [
+        "Rig_Medium"
+      ],
+      "skinCount": 1,
+      "skinNames": [
+        "Rig_Medium"
+      ]
+    },
+    {
+      "file": "Rig_Medium_Tools.glb",
+      "category": "tools",
+      "zipMember": "KayKit_Character_Animations_1.1/Animations/gltf/Rig_Medium/Rig_Medium_Tools.glb",
+      "matchesZipMember": true,
+      "size": 1461204,
+      "sha256": "e3b62dc122c5073373376a846e354137add2088ddcce8731c389fc5c20734aad",
+      "clips": [
+        "Chop",
+        "Chopping",
+        "Dig",
+        "Digging",
+        "Fishing_Bite",
+        "Fishing_Cast",
+        "Fishing_Catch",
+        "Fishing_Idle",
+        "Fishing_Reeling",
+        "Fishing_Struggling",
+        "Fishing_Tug",
+        "Hammer",
+        "Hammering",
+        "Holding_A",
+        "Holding_B",
+        "Holding_C",
+        "Lockpick",
+        "Lockpicking",
+        "Pickaxe",
+        "Pickaxing",
+        "Saw",
+        "Sawing",
+        "T-Pose",
+        "Work_A",
+        "Work_B",
+        "Work_C",
+        "Working_A",
+        "Working_B",
+        "Working_C"
+      ],
+      "compatibility": [
+        "Rig_Medium"
+      ],
+      "skinCount": 1,
+      "skinNames": [
+        "Rig_Medium"
+      ]
+    }
+  ]
+}

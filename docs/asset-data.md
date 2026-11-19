@@ -48,6 +48,10 @@ const detail = activeCharacters.length ? getAssetDetail(index, activeCharacters[
 
 `getAssetDetail` 返回所选修订、相同风格/类型/资产 ID 的所有修订及其中的活动版本。未登记的 key 返回 null。列表顺序是稳定的路径顺序，版本号原样保留。
 
+## 动画骨骼
+
+入库目录、manifest、发布 URL、验证状态和本地 KayKit 取证见[动画骨骼资产规则](animation-rig.md)。
+
 ## 将来接入 GitHub API
 
 数据源边界为异步的 `loadAssetIndex() → Promise<IndexV1>`。当前实现只获取指定的静态 JSON 并将媒体路径解析为可直接用作 img.src 的 URL。未来可在应用初始化时注入另一个同签名函数，由它读取 GitHub 数据并转换为上表结构，给出可访问的媒体 URL。筛选和详情函数只消费 IndexV1，可直接复用。

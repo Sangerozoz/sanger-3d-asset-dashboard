@@ -1,6 +1,7 @@
 // previewAdapter.mount(host, asset, { signal }) may return a cleanup function or a Promise of one.
+import { assetTypeNames, animationCategoryNames } from '../data/asset-types.mjs';
+
 const statusNames = { draft: '草稿', candidate: '候选', review: '待审核', accepted: '已验收', rejected: '已退回', deprecated: '已弃用' };
-const typeNames = { character: '角色', vehicle: '载具', building: '建筑', prop: '道具' };
 const viewNames = { front: '正面', 'three-quarter': '四分之三侧面', side: '侧面', back: '背面', clay: '白模' };
 const styleName = value => value === 'sanger-rounded-toy' ? 'Sanger Rounded Toy' : value;
 const paths = {
@@ -58,7 +59,23 @@ function uniqueOptions(assets, field, format) {
 }
 
 const assetNames = { 'worker-sanger': '小工匠（Sanger）', 'chef-sanger': '自由厨师（Sanger）' };
-const checkNames = { pass: '通过', fail: '失败', unvalidated: '未验证' };
+const checkNames = { pass: '通过', fail: '失败', unvalidated: '未验证', review_required: '待人工验收' };
+const valueOr = (value, empty = '未提供') => value === undefined || value === null || value === '' ? empty : String(value);
+const arrayText = values => Array.isArray(values) && values.length ? values.join('、') : '未提供';
+const safeLink = (label, value) => {
+  const url = safeImageURL(value);
+  if (!url) return el('span', 'ad-missing', '未提供');
+  const node = el('a', 'ad-original', icon('open'), label);
+  node.href = url;
+  node.target = '_blank';
+  node.rel = 'noopener noreferrer';
+  return node;
+};
+function metadataList(items, cls = 'ad-meta-list') {
+  const list = el('dl', cls);
+  for (const [label, value] of items) list.append(el('div', '', el('dt', '', label), el('dd', '', value)));
+  return list;
+}
 
 // index is the resolved IndexV1 returned by loadAssetIndex().
 export function mountAssetDashboard(root, { index, previewAdapter }) {
@@ -67,7 +84,8 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     name: record.displayName || assetNames[record.assetId] || record.assetId,
     shots: index.fixedViews.filter(view => record.screenshots[view])
       .map(view => ({ view, url: record.screenshots[view] })),
-    benchmarkFraming: record.styleId === 'sanger-rounded-toy' && record.assetId in assetNames
+    benchmarkFraming: record.styleId === 'sanger-rounded-toy' && record.assetId in assetNames,
+    typeLabel: assetTypeNames[record.assetType] || record.assetType,
   }));
   let selected = null;
   let displayed;
@@ -82,7 +100,8 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   search.oninput = updateList;
   const category = el('select');
   category.setAttribute('aria-label', '资产分类');
-  category.append(new Option('全部分类', ''), ...uniqueOptions(assets, 'assetType', v => typeNames[v] || v));
+  const typeValues = [...new Set([...assets.map(asset => asset.assetType), ...Object.keys(assetTypeNames)].filter(Boolean))];
+  category.append(new Option('全部分类', ''), ...typeValues.sort().map(value => new Option(assetTypeNames[value] || value, value)));
   category.onchange = updateList;
   const style = el('select');
   style.setAttribute('aria-label', '风格类型');
@@ -166,7 +185,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       card.setAttribute('aria-label', '查看 ' + (a.name || a.assetId) + ' 详情');
       card.append(photo(a.shots[0], a.name || a.assetId, 'ad-card-photo' + (a.benchmarkFraming ? ' ad-crop' : '')),
         el('span', 'ad-card-body', el('strong', '', a.name || a.assetId), el('code', '', a.assetId),
-          el('span', 'ad-card-meta', typeNames[a.assetType] || a.assetType, el('span', '', '·'), styleName(a.styleId)),
+          el('span', 'ad-card-meta', a.typeLabel, el('span', '', '·'), styleName(a.styleId)),
           statusTagFor(a)));
       return card;
     }));
@@ -189,7 +208,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       el('div', '', el('div', 'ad-section-label', '资产详情'), el('h2', '', a.name || a.assetId), el('code', '', a.assetId)),
       el('div', 'ad-badges', statusTagFor(a)));
     const specs = el('dl', 'ad-specs');
-    for (const [label, value] of [['风格', styleName(a.styleId)], ['类型', typeNames[a.assetType] || a.assetType], ['资产版本', 'v' + a.version], ['校验', checkNames[a.validation?.status] || a.validation?.status || '未验证']]) {
+    for (const [label, value] of [['风格', styleName(a.styleId)], ['类型', a.typeLabel], ['资产版本', 'v' + a.version], ['校验', checkNames[a.validation?.status] || a.validation?.status || '未验证']]) {
       specs.append(el('div', '', el('dt', '', label), el('dd', '', value)));
     }
     const switcher = el('div', 'ad-switch');
@@ -204,6 +223,11 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     const stage = el('div', 'ad-stage');
     detail.append(close, heading, specs, el('div', 'ad-view-head', el('h3', '', '资产预览'), switcher), stage);
     if (mode === 'cube') {
+      if (a.animation) {
+        stage.append(el('div', 'ad-placeholder', icon('cube'), '动作骨骼暂不提供播放器预览', el('small', '', a.animation.fileUrl ? '已登记文件，可从元数据链接打开。' : '尚未登记可用的文件。')));
+        renderAnimationSections(a);
+        return;
+      }
       attachPreview(stage, a);
       return;
     }
@@ -211,6 +235,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     const shot = shots[shotIndex];
     if (!shot) {
       stage.append(el('div', 'ad-placeholder', icon('image'), '暂无截图'));
+      if (a.animation) renderAnimationSections(a);
       return;
     }
     const label = viewNames[shot.view] || shot.view;
@@ -229,6 +254,36 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       strip.append(thumb);
     }
     detail.append(el('div', 'ad-strip-label', el('h3', '', '截图视图'), el('code', '', String(shots.length))), strip);
+    if (a.animation) renderAnimationSections(a);
+  }
+
+  function renderAnimationSections(asset) {
+    const animation = asset.animation;
+    detail.append(el('section', 'ad-detail-section', el('div', 'ad-section-label', '动画元数据'), metadataList([
+      ['提供方', valueOr(animation.provider)],
+      ['来源名称', valueOr(animation.sourceName)],
+      ['来源链接', safeLink('打开来源', animation.sourceUrl)],
+      ['许可', valueOr(animation.license, '未标注')],
+      ['许可链接', safeLink('查看许可', animation.licenseUrl)],
+      ['兼容性', arrayText(animation.compatibility)],
+      ['分类', animationCategoryNames[animation.category] || animation.category || '未提供'],
+      ['标签', arrayText(animation.tags)],
+      ['文件格式', valueOr(animation.format)],
+      ['资产文件', safeLink('打开文件', animation.fileUrl)],
+      ['动作片段', arrayText(animation.clips)],
+    ])));
+    renderEvidence(asset);
+  }
+
+  function renderEvidence(asset) {
+    const validation = asset.validation || {};
+    detail.append(el('section', 'ad-detail-section', el('div', 'ad-section-label', '证据与预览可用性'), metadataList([
+      ['截图证据', asset.shots.length ? `${asset.shots.length} 张可用截图` : '暂无截图'],
+      ['校验状态', checkNames[validation.status] || valueOr(validation.status, '未验证')],
+      ['校验错误', arrayText(validation.errors)],
+      ['校验警告', arrayText(validation.warnings)],
+      ['预览可用性', asset.animation ? (asset.animation.fileUrl ? '已登记文件，播放器未接入' : '缺少文件链接') : (previewAdapter?.mount ? '支持现有 3D 预览' : '未接入 3D 预览')],
+    ])));
   }
 
   function attachPreview(stage, asset) {

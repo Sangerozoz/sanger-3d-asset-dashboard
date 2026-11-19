@@ -1,3 +1,5 @@
+import { resolveAnimationUrls } from './asset-types.mjs';
+
 // All media paths in the raw catalog are relative to the catalog file itself.
 export async function loadAssetIndex(indexUrl = new URL('assets/asset-index.json', document.baseURI)) {
   const response = await fetch(indexUrl);
@@ -11,6 +13,7 @@ export async function loadAssetIndex(indexUrl = new URL('assets/asset-index.json
       ...revision,
       screenshots: Object.fromEntries(Object.entries(revision.screenshots).map(([view, url]) => [view, resolveMedia(url)])),
       references: revision.references.map(reference => ({ ...reference, url: resolveMedia(reference.url) })),
+      ...(revision.animation ? { animation: resolveAnimationUrls(revision.animation, response.url) } : {}),
     })),
   };
 }
