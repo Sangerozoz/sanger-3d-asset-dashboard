@@ -102,7 +102,30 @@ async function outputFile(relative, bytes) {
   }
 }
 
-const activeBaseline = await readJson(path.join(factory, 'active-baseline.json'));
+const factoryBaseline = path.join(factory, 'active-baseline.json');
+if (await readOptional(factoryBaseline) === null) {
+  const checkedIndex = await readJson(path.join(output, 'asset-index.json'));
+  assert(checkedIndex.schemaVersion === 1 && Array.isArray(checkedIndex.assets), 'Invalid checked-in asset index');
+  let mediaCount = 0;
+  for (const asset of checkedIndex.assets) {
+    for (const url of Object.values(asset.screenshots ?? {})) {
+      if (url) {
+        assert(await readOptional(path.join(output, url)) !== null, 'Missing indexed media: ' + url);
+        mediaCount += 1;
+      }
+    }
+    for (const reference of asset.references ?? []) {
+      if (reference.url) {
+        assert(await readOptional(path.join(output, reference.url)) !== null, 'Missing indexed media: ' + reference.url);
+        mediaCount += 1;
+      }
+    }
+  }
+  console.log('Verified checked-in asset-index.json with ' + checkedIndex.assets.length + ' revisions and ' + mediaCount + ' media references.');
+  process.exit(0);
+}
+
+const activeBaseline = await readJson(factoryBaseline);
 const assets = [];
 for (const area of ['baselines', 'candidates']) {
   const dir = path.join(factory, area);
