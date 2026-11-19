@@ -13,14 +13,14 @@ function showBootError(error, context = {}) {
   const details = describeBootError(error, { ...context, url: context.url || currentResourceUrl() });
   root.replaceChildren();
   const panel = document.createElement('section');
-  panel.className = 'ad-boot-error';
+  panel.className = 'assetlib-boot-error';
   panel.setAttribute('role', 'alert');
   const title = document.createElement('h1');
   title.textContent = '页面加载失败';
   const message = document.createElement('p');
   message.textContent = details.message;
   const meta = document.createElement('p');
-  meta.className = 'ad-boot-error-meta';
+  meta.className = 'assetlib-boot-error-meta';
   meta.textContent = `阶段：${details.stage} · 资源：${details.url}`;
   const retry = document.createElement('button');
   retry.type = 'button';

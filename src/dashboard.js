@@ -17,7 +17,7 @@ const paths = {
 };
 function icon(id) {
   const box = document.createElement('span');
-  box.className = 'ad-icon';
+  box.className = 'assetlib-icon';
   box.setAttribute('aria-hidden', 'true');
   box.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">' + paths[id] + '</svg>';
   return box;
@@ -29,7 +29,7 @@ function el(tag, cls, ...children) {
   return node;
 }
 function statusTag(value) {
-  return el('span', 'ad-status', el('i'), statusNames[value] || value);
+  return el('span', 'assetlib-status', el('i'), statusNames[value] || value);
 }
 function safeImageURL(value) {
   try {
@@ -38,7 +38,7 @@ function safeImageURL(value) {
   } catch { return ''; }
 }
 function photo(shot, alt, cls) {
-  const frame = el('span', cls || 'ad-photo', icon('image'));
+  const frame = el('span', cls || 'assetlib-photo', icon('image'));
   const url = shot?.url && safeImageURL(shot.url);
   if (url) {
     const image = el('img');
@@ -65,14 +65,14 @@ const valueOr = (value, empty = '未提供') => value === undefined || value ===
 const arrayText = values => Array.isArray(values) && values.length ? values.join('、') : '未提供';
 const safeLink = (label, value) => {
   const url = safeImageURL(value);
-  if (!url) return el('span', 'ad-missing', '未提供');
-  const node = el('a', 'ad-original', icon('open'), label);
+  if (!url) return el('span', 'assetlib-missing', '未提供');
+  const node = el('a', 'assetlib-original', icon('open'), label);
   node.href = url;
   node.target = '_blank';
   node.rel = 'noopener noreferrer';
   return node;
 };
-function metadataList(items, cls = 'ad-meta-list') {
+function metadataList(items, cls = 'assetlib-meta-list') {
   const list = el('dl', cls);
   for (const [label, value] of items) list.append(el('div', '', el('dt', '', label), el('dd', '', value)));
   return list;
@@ -95,14 +95,14 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   let stopPreview = () => {};
   let showingAnimations;
   let sectionAssets;
-  const shell = el('div', 'asset-dashboard');
+  const shell = el('div', 'assetlib-dashboard');
   const search = el('input');
   search.type = 'search';
   search.placeholder = '搜索资产名称或 ID';
   search.setAttribute('aria-label', search.placeholder);
   search.setAttribute('enterkeyhint', 'search');
   search.spellcheck = false;
-  const searchClear = el('button', 'ad-search-clear', icon('close'));
+  const searchClear = el('button', 'assetlib-search-clear', icon('close'));
   searchClear.type = 'button';
   searchClear.setAttribute('aria-label', '清除搜索');
   searchClear.hidden = true;
@@ -119,22 +119,22 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   const style = el('select');
   style.setAttribute('aria-label', '风格类型');
   style.onchange = updateList;
-  const reset = action('重置', 'ad-link', () => {
+  const reset = action('重置', 'assetlib-link', () => {
     search.value = '';
     category.value = '';
     style.value = '';
     updateList();
     search.focus();
   });
-  const count = el('span', 'ad-count');
+  const count = el('span', 'assetlib-count');
   count.setAttribute('aria-live', 'polite');
-  const list = el('div', 'ad-list');
-  const backdrop = el('button', 'ad-drawer-backdrop');
+  const list = el('div', 'assetlib-list');
+  const backdrop = el('button', 'assetlib-drawer-backdrop');
   backdrop.type = 'button';
   backdrop.setAttribute('aria-label', '关闭资产详情');
-  const detail = el('aside', 'ad-panel ad-detail');
+  const detail = el('aside', 'assetlib-panel assetlib-detail');
   detail.setAttribute('aria-label', '资产详情');
-  const close = action('', 'ad-drawer-close', () => closeDrawer());
+  const close = action('', 'assetlib-drawer-close', () => closeDrawer());
   close.setAttribute('aria-label', '关闭资产详情');
   close.append(icon('close'));
   detail.append(close);
@@ -144,25 +144,25 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       ['styleId', style.value]
     ];
   }
-  const tools = el('div', 'ad-tools',
-    el('div', 'ad-toolbar-row',
-      el('label', 'ad-search', icon('search'), search, searchClear),
-      el('label', 'ad-select-wrap', '分类', category, icon('chevron')),
-      el('label', 'ad-select-wrap', '风格类型', style, icon('chevron')),
+  const tools = el('div', 'assetlib-tools',
+    el('div', 'assetlib-toolbar-row',
+      el('label', 'assetlib-search', icon('search'), search, searchClear),
+      el('label', 'assetlib-select-wrap', '分类', category, icon('chevron')),
+      el('label', 'assetlib-select-wrap', '风格类型', style, icon('chevron')),
       reset),
-    el('div', 'ad-filter-foot', count));
+    el('div', 'assetlib-filter-foot', count));
   const pageTitle = el('h1', '');
-  const library = el('section', 'ad-library',
-    el('div', 'ad-panel-title', pageTitle),
+  const library = el('section', 'assetlib-library',
+    el('div', 'assetlib-panel-title', pageTitle),
     tools, list);
   const modelsTab = action('3D 资产', '', () => switchSection(false));
   const animationsTab = action('骨骼动画', '', () => switchSection(true));
-  const nav = el('nav', 'ad-nav', modelsTab, animationsTab);
+  const nav = el('nav', 'assetlib-nav', modelsTab, animationsTab);
   nav.setAttribute('aria-label', '资产导航');
   const brandName = '游戏资产';
   shell.append(
-    el('header', 'ad-header', el('div', 'ad-brand', el('span', 'ad-brand-mark', icon('cube')), brandName), nav),
-    el('main', 'ad-content', library), backdrop, detail);
+    el('header', 'assetlib-header', el('div', 'assetlib-brand', el('span', 'assetlib-brand-mark', icon('cube')), brandName), nav),
+    el('main', 'assetlib-content', library), backdrop, detail);
   document.title = brandName;
   root.setAttribute('aria-label', brandName);
   root.replaceChildren(shell);
@@ -188,7 +188,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   }
 
   function onKeydown(event) {
-    if (event.key === 'Escape' && shell.classList.contains('drawer-open')) closeDrawer();
+    if (event.key === 'Escape' && shell.classList.contains('assetlib-drawer-open')) closeDrawer();
   }
   function choose(asset) {
     selected = asset;
@@ -197,13 +197,13 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   }
   function openDrawer(asset) {
     choose(asset);
-    shell.classList.add('drawer-open');
+    shell.classList.add('assetlib-drawer-open');
     renderDetail();
     close.focus();
   }
   function closeDrawer() {
-    if (!shell.classList.contains('drawer-open')) return;
-    shell.classList.remove('drawer-open');
+    if (!shell.classList.contains('assetlib-drawer-open')) return;
+    shell.classList.remove('assetlib-drawer-open');
     stopPreview();
     stopPreview = () => {};
     detail.replaceChildren(close);
@@ -221,15 +221,15 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     if (selected && !visible.includes(selected)) closeDrawer();
     count.textContent = String(visible.length);
     list.replaceChildren(...visible.map(a => {
-      const card = action('', 'ad-card', () => openDrawer(a));
+      const card = action('', 'assetlib-card', () => openDrawer(a));
       card.setAttribute('aria-label', '查看 ' + (a.name || a.assetId) + ' 详情');
-      card.append(photo(a.shots[0], a.name || a.assetId, 'ad-card-photo' + (a.benchmarkFraming ? ' ad-crop' : '')),
-        el('span', 'ad-card-body', el('strong', '', a.name || a.assetId), el('code', '', a.assetId),
-          el('span', 'ad-card-meta', a.typeLabel, el('span', '', '·'), styleName(a.styleId)),
+      card.append(photo(a.shots[0], a.name || a.assetId, 'assetlib-card-photo' + (a.benchmarkFraming ? ' assetlib-crop' : '')),
+        el('span', 'assetlib-card-body', el('strong', '', a.name || a.assetId), el('code', '', a.assetId),
+          el('span', 'assetlib-card-meta', a.typeLabel, el('span', '', '·'), styleName(a.styleId)),
           statusTagFor(a)));
       return card;
     }));
-    if (!visible.length) list.append(el('p', 'ad-empty', '没有匹配的资产'));
+    if (!visible.length) list.append(el('p', 'assetlib-empty', '没有匹配的资产'));
   }
   function statusTagFor(asset) {
     const tag = statusTag(asset.status);
@@ -244,14 +244,14 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     const a = selected;
     displayed = selected;
     if (!a) return;
-    const heading = el('div', 'ad-detail-head',
-      el('div', '', el('div', 'ad-section-label', '资产详情'), el('h2', '', a.name || a.assetId), el('code', '', a.assetId)),
-      el('div', 'ad-badges', statusTagFor(a)));
-    const specs = el('dl', 'ad-specs');
+    const heading = el('div', 'assetlib-detail-head',
+      el('div', '', el('div', 'assetlib-section-label', '资产详情'), el('h2', '', a.name || a.assetId), el('code', '', a.assetId)),
+      el('div', 'assetlib-badges', statusTagFor(a)));
+    const specs = el('dl', 'assetlib-specs');
     for (const [label, value] of [['风格', styleName(a.styleId)], ['类型', a.typeLabel], ['资产版本', 'v' + a.version], ['校验', checkNames[a.validation?.status] || a.validation?.status || '未验证']]) {
       specs.append(el('div', '', el('dt', '', label), el('dd', '', value)));
     }
-    const switcher = el('div', 'ad-switch');
+    const switcher = el('div', 'assetlib-switch');
     switcher.setAttribute('role', 'group');
     switcher.setAttribute('aria-label', '预览模式');
     for (const [id, title] of [['image', '截图'], ['cube', '3D 预览']]) {
@@ -260,11 +260,11 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       button.setAttribute('aria-pressed', String(mode === id));
       switcher.append(button);
     }
-    const stage = el('div', 'ad-stage');
-    detail.append(close, heading, specs, el('div', 'ad-view-head', el('h3', '', '资产预览'), switcher), stage);
+    const stage = el('div', 'assetlib-stage');
+    detail.append(close, heading, specs, el('div', 'assetlib-view-head', el('h3', '', '资产预览'), switcher), stage);
     if (mode === 'cube') {
       if (a.animation) {
-        stage.append(el('div', 'ad-placeholder', icon('cube'), '动作骨骼暂不提供播放器预览', el('small', '', a.animation.fileUrl ? '已登记文件，可从元数据链接打开。' : '尚未登记可用的文件。')));
+        stage.append(el('div', 'assetlib-placeholder', icon('cube'), '动作骨骼暂不提供播放器预览', el('small', '', a.animation.fileUrl ? '已登记文件，可从元数据链接打开。' : '尚未登记可用的文件。')));
         renderAnimationSections(a);
         return;
       }
@@ -274,32 +274,32 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     const shots = a.shots;
     const shot = shots[shotIndex];
     if (!shot) {
-      stage.append(el('div', 'ad-placeholder', icon('image'), '暂无截图'));
+      stage.append(el('div', 'assetlib-placeholder', icon('image'), '暂无截图'));
       if (a.animation) renderAnimationSections(a);
       return;
     }
     const label = viewNames[shot.view] || shot.view;
-    const original = el('a', 'ad-original', icon('open'), '查看原图');
+    const original = el('a', 'assetlib-original', icon('open'), '查看原图');
     const url = safeImageURL(shot.url);
     original.target = '_blank';
     original.rel = 'noopener';
     if (url) original.href = url;
-    stage.append(photo(shot, (a.name || a.assetId) + ' · ' + label, 'ad-stage-image' + (a.benchmarkFraming ? ' ad-crop' : '')),
-      el('span', 'ad-view-caption', label), original);
-    const strip = el('div', 'ad-filmstrip');
+    stage.append(photo(shot, (a.name || a.assetId) + ' · ' + label, 'assetlib-stage-image' + (a.benchmarkFraming ? ' assetlib-crop' : '')),
+      el('span', 'assetlib-view-caption', label), original);
+    const strip = el('div', 'assetlib-filmstrip');
     for (const [index, item] of shots.entries()) {
-      const thumb = action('', 'ad-thumb', () => { shotIndex = index; renderDetail(); });
-      thumb.append(photo(item, '', 'ad-thumb-photo' + (a.benchmarkFraming ? ' ad-crop' : '')), viewNames[item.view] || item.view);
+      const thumb = action('', 'assetlib-thumb', () => { shotIndex = index; renderDetail(); });
+      thumb.append(photo(item, '', 'assetlib-thumb-photo' + (a.benchmarkFraming ? ' assetlib-crop' : '')), viewNames[item.view] || item.view);
       thumb.setAttribute('aria-pressed', String(index === shotIndex));
       strip.append(thumb);
     }
-    detail.append(el('div', 'ad-strip-label', el('h3', '', '截图视图'), el('code', '', String(shots.length))), strip);
+    detail.append(el('div', 'assetlib-strip-label', el('h3', '', '截图视图'), el('code', '', String(shots.length))), strip);
     if (a.animation) renderAnimationSections(a);
   }
 
   function renderAnimationSections(asset) {
     const animation = asset.animation;
-    detail.append(el('section', 'ad-detail-section', el('div', 'ad-section-label', '动画元数据'), metadataList([
+    detail.append(el('section', 'assetlib-detail-section', el('div', 'assetlib-section-label', '动画元数据'), metadataList([
       ['提供方', valueOr(animation.provider)],
       ['来源名称', valueOr(animation.sourceName)],
       ['来源链接', safeLink('打开来源', animation.sourceUrl)],
@@ -317,7 +317,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
 
   function renderEvidence(asset) {
     const validation = asset.validation || {};
-    detail.append(el('section', 'ad-detail-section', el('div', 'ad-section-label', '证据与预览可用性'), metadataList([
+    detail.append(el('section', 'assetlib-detail-section', el('div', 'assetlib-section-label', '证据与预览可用性'), metadataList([
       ['截图证据', asset.shots.length ? `${asset.shots.length} 张可用截图` : '暂无截图'],
       ['校验状态', checkNames[validation.status] || valueOr(validation.status, '未验证')],
       ['校验错误', arrayText(validation.errors)],
@@ -328,10 +328,10 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
 
   function attachPreview(stage, asset) {
     if (!previewAdapter?.mount) {
-      stage.append(el('div', 'ad-placeholder', icon('cube'), '尚未接入 3D 预览'));
+      stage.append(el('div', 'assetlib-placeholder', icon('cube'), '尚未接入 3D 预览'));
       return;
     }
-    const host = el('div', 'ad-adapter-host');
+    const host = el('div', 'assetlib-adapter-host');
     stage.append(host);
     const controller = new AbortController();
     let cleanup;
@@ -343,7 +343,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       if (controller.signal.aborted) release();
       else cleanup = release;
     }).catch(() => {
-      if (!controller.signal.aborted) host.replaceChildren(el('div', 'ad-placeholder', icon('cube'), '3D 预览加载失败'));
+      if (!controller.signal.aborted) host.replaceChildren(el('div', 'assetlib-placeholder', icon('cube'), '3D 预览加载失败'));
     });
   }
 

@@ -20,13 +20,13 @@
         const message = error instanceof Error ? error.message : String(error || '未知错误');
         root.innerHTML = '';
         const panel = document.createElement('section');
-        panel.className = 'ad-boot-error';
+        panel.className = 'assetlib-boot-error';
         panel.setAttribute('role', 'alert');
         panel.innerHTML = '<h1>页面加载失败</h1>';
         const details = document.createElement('p');
         details.textContent = message;
         const meta = document.createElement('p');
-        meta.className = 'ad-boot-error-meta';
+        meta.className = 'assetlib-boot-error-meta';
         meta.textContent = `阶段：${stage} · 资源：${resourceUrl || document.baseURI}`;
         const button = document.createElement('button');
         button.type = 'button';
