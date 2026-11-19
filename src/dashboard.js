@@ -10,7 +10,8 @@ const paths = {
   image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4 18 5-5 3 3 4-6 5 7"/>',
   search: '<circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/>',
   arrow: '<path d="m9 6 6 6-6 6"/>',
-  open: '<path d="M14 4h6v6m0-6-9 9M10 5H5v14h14v-5"/>'
+  open: '<path d="M14 4h6v6m0-6-9 9M10 5H5v14h14v-5"/>',
+  close: '<path d="M6 6l12 12M18 6 6 18"/>'
 };
 function icon(id) {
   const box = document.createElement('span');
@@ -61,7 +62,6 @@ const checkNames = { pass: '通过', fail: '失败', unvalidated: '未验证' };
 
 // index is the resolved IndexV1 returned by loadAssetIndex().
 export function mountAssetDashboard(root, { index, previewAdapter }) {
-  const styles = index.activeBaseline.styles;
   const assets = index.assets.map(record => ({
     ...record,
     name: record.displayName || assetNames[record.assetId] || record.assetId,
@@ -69,99 +69,125 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       .map(view => ({ view, url: record.screenshots[view] })),
     benchmarkFraming: record.styleId === 'sanger-rounded-toy' && record.assetId in assetNames
   }));
-  let selected = assets.find(a => a.isActive) || assets[0];
+  let selected = null;
   let displayed;
   let mode = 'image';
   let shotIndex = 0;
   let stopPreview = () => {};
   const shell = el('div', 'asset-dashboard');
-  const list = el('div', 'ad-list');
-  const detail = el('section', 'ad-panel ad-detail');
-  detail.setAttribute('aria-label', '资产详情');
-  const count = el('span', 'ad-count');
-  count.setAttribute('aria-live', 'polite');
   const search = el('input');
   search.type = 'search';
-  search.placeholder = '搜索名称或资产 ID';
+  search.placeholder = '搜索资产名称或 ID';
   search.setAttribute('aria-label', search.placeholder);
   search.oninput = updateList;
-
-  const filters = [['styleId', '风格', styleName], ['assetType', '类型', v => typeNames[v] || v], ['status', '状态', v => statusNames[v] || v]].map(([field, title, format]) => {
-    const select = el('select');
-    select.append(new Option('全部' + title, ''), ...uniqueOptions(assets, field, format));
-    select.onchange = updateList;
-    return { field, select, label: el('label', '', title, select) };
-  });
+  const category = el('select');
+  category.setAttribute('aria-label', '资产分类');
+  category.append(new Option('全部分类', ''), ...uniqueOptions(assets, 'assetType', v => typeNames[v] || v));
+  category.onchange = updateList;
+  const style = el('select');
+  style.setAttribute('aria-label', '风格类型');
+  style.append(new Option('全部风格类型', ''), ...uniqueOptions(assets, 'styleId', styleName));
+  style.onchange = updateList;
   const reset = action('重置', 'ad-link', () => {
     search.value = '';
-    for (const { select } of filters) select.value = '';
+    category.value = '';
+    style.value = '';
     updateList();
     search.focus();
   });
-  const baseline = el('section', 'ad-baseline', el('div', 'ad-baseline-symbol', icon('layers')), el('h2', '', '当前基线'));
-  const groups = Object.entries(styles);
-  for (const [style, { version }] of groups) {
-    baseline.append(el('span', 'ad-baseline-group', styleName(style), ...(version ? [el('code', '', 'v' + version)] : [])));
+  const count = el('span', 'ad-count');
+  count.setAttribute('aria-live', 'polite');
+  const list = el('div', 'ad-list');
+  const backdrop = el('button', 'ad-drawer-backdrop');
+  backdrop.type = 'button';
+  backdrop.setAttribute('aria-label', '关闭资产详情');
+  const detail = el('aside', 'ad-panel ad-detail');
+  detail.setAttribute('aria-label', '资产详情');
+  const close = action('', 'ad-drawer-close', () => closeDrawer());
+  close.setAttribute('aria-label', '关闭资产详情');
+  close.append(icon('close'));
+  detail.append(close);
+  function filters() {
+    return [
+      ['assetType', category.value],
+      ['styleId', style.value]
+    ];
   }
-  if (!groups.length) baseline.append(el('span', '', '尚未设置'));
-  const library = el('section', 'ad-panel ad-library',
-    el('div', 'ad-panel-title', el('h2', '', icon('grid'), '资产列表'), count),
-    el('div', 'ad-tools', el('label', 'ad-search', icon('search'), search),
-      el('div', 'ad-filters', ...filters.map(f => f.label)),
-      el('div', 'ad-filter-foot', el('span', '', '筛选结果'), reset)), list);
-  shell.append(el('header', 'ad-header', el('div', 'ad-brand', el('span', 'ad-brand-mark', icon('cube')), '三维资产管理'),
-    el('span', 'ad-header-divider'), el('span', 'ad-header-path', '工作空间')),
-    el('div', 'ad-content', el('div', 'ad-page-title', el('h1', '', '资产目录'),
-      el('span', 'ad-total', String(assets.length), ' 个版本')), baseline,
-      el('div', 'ad-layout', library, detail)));
+  const tools = el('div', 'ad-tools',
+    el('div', 'ad-toolbar-row',
+      el('label', 'ad-search', icon('search'), search),
+      el('label', 'ad-select-wrap', '分类', category),
+      el('label', 'ad-select-wrap', '风格类型', style),
+      reset),
+    el('div', 'ad-filter-foot', el('span', '', '资产'), count));
+  const library = el('section', 'ad-library',
+    el('div', 'ad-panel-title', el('h1', '', '资产'), count),
+    tools, list);
+  shell.append(
+    el('header', 'ad-header', el('div', 'ad-brand', el('span', 'ad-brand-mark', icon('cube')), '三维资产管理'),
+      el('span', 'ad-header-divider'), el('span', 'ad-header-path', '资产工作台')),
+    el('main', 'ad-content', library), backdrop, detail);
   root.replaceChildren(shell);
+  backdrop.onclick = closeDrawer;
+  document.addEventListener('keydown', onKeydown);
   updateList();
 
+  function onKeydown(event) {
+    if (event.key === 'Escape' && shell.classList.contains('drawer-open')) closeDrawer();
+  }
   function choose(asset) {
-    if (selected !== asset) {
-      selected = asset;
-      shotIndex = 0;
-    }
+    selected = asset;
+    shotIndex = 0;
+    mode = 'image';
+  }
+  function openDrawer(asset) {
+    choose(asset);
+    shell.classList.add('drawer-open');
+    renderDetail();
+    close.focus();
+  }
+  function closeDrawer() {
+    if (!shell.classList.contains('drawer-open')) return;
+    shell.classList.remove('drawer-open');
+    stopPreview();
+    stopPreview = () => {};
+    detail.replaceChildren(close);
   }
   function updateList() {
     const query = search.value.trim().toLowerCase();
-    reset.disabled = !query && filters.every(f => !f.select.value);
+    const activeFilters = filters();
+    reset.disabled = !query && activeFilters.every(([, value]) => !value);
     const visible = assets.filter(a => [a.name, a.assetId].some(v => v?.toLowerCase().includes(query)) &&
-      filters.every(f => !f.select.value || a[f.field] === f.select.value));
-    if (!visible.includes(selected)) choose(visible[0]);
+      activeFilters.every(([field, value]) => !value || a[field] === value));
+    if (selected && !visible.includes(selected)) closeDrawer();
     count.textContent = String(visible.length);
     list.replaceChildren(...visible.map(a => {
-      const row = action('', 'ad-row', () => {
-        choose(a);
-        updateList();
-        list.querySelector('[aria-pressed="true"]')?.focus({ preventScroll: true });
-      });
-      row.setAttribute('aria-pressed', String(a === selected));
-      row.append(photo(a.shots[0], '', 'ad-avatar' + (a.benchmarkFraming ? ' ad-crop' : '')),
-        el('span', 'ad-row-info', el('strong', '', a.name || a.assetId), el('code', '', a.assetId),
-          el('span', 'ad-row-meta', typeNames[a.assetType] || a.assetType, el('span', '', '·'), 'v' + a.version, el('span', '', '·'), statusNames[a.status] || a.status)),
-        icon('arrow'));
-      return row;
+      const card = action('', 'ad-card', () => openDrawer(a));
+      card.setAttribute('aria-label', '查看 ' + (a.name || a.assetId) + ' 详情');
+      card.append(photo(a.shots[0], a.name || a.assetId, 'ad-card-photo' + (a.benchmarkFraming ? ' ad-crop' : '')),
+        el('span', 'ad-card-body', el('strong', '', a.name || a.assetId), el('code', '', a.assetId),
+          el('span', 'ad-card-meta', typeNames[a.assetType] || a.assetType, el('span', '', '·'), styleName(a.styleId)),
+          statusTagFor(a)));
+      return card;
     }));
     if (!visible.length) list.append(el('p', 'ad-empty', '没有匹配的资产'));
-    if (displayed !== selected || !detail.hasChildNodes()) renderDetail();
+  }
+  function statusTagFor(asset) {
+    const tag = statusTag(asset.status);
+    tag.dataset.status = asset.status;
+    return tag;
   }
 
   function renderDetail() {
     stopPreview();
     stopPreview = () => {};
-    detail.replaceChildren();
+    detail.replaceChildren(close);
     const a = selected;
     displayed = selected;
-    if (!a) {
-      detail.append(el('div', 'ad-no-selection', icon('cube'), '暂无可查看的资产'));
-      return;
-    }
-    const tag = statusTag(a.status);
-    tag.dataset.status = a.status;
+    if (!a) return;
     const heading = el('div', 'ad-detail-head',
       el('div', '', el('div', 'ad-section-label', '资产详情'), el('h2', '', a.name || a.assetId), el('code', '', a.assetId)),
-      el('div', 'ad-badges', tag, ...(a.isActive ? [el('span', 'ad-active', icon('layers'), '当前基线')] : [])));
+      el('div', 'ad-badges', statusTagFor(a)));
     const specs = el('dl', 'ad-specs');
     for (const [label, value] of [['风格', styleName(a.styleId)], ['类型', typeNames[a.assetType] || a.assetType], ['资产版本', 'v' + a.version], ['校验', checkNames[a.validation?.status] || a.validation?.status || '未验证']]) {
       specs.append(el('div', '', el('dt', '', label), el('dd', '', value)));
@@ -170,18 +196,13 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     switcher.setAttribute('role', 'group');
     switcher.setAttribute('aria-label', '预览模式');
     for (const [id, title] of [['image', '截图'], ['cube', '3D 预览']]) {
-      const button = action('', '', () => {
-        mode = id;
-        renderDetail();
-        detail.querySelector('.ad-switch [aria-pressed="true"]').focus();
-      });
+      const button = action('', '', () => { mode = id; renderDetail(); });
       button.append(icon(id), title);
       button.setAttribute('aria-pressed', String(mode === id));
       switcher.append(button);
     }
     const stage = el('div', 'ad-stage');
-    const headingTools = el('div', 'ad-view-head', el('h3', '', '资产预览'), switcher);
-    detail.append(heading, specs, headingTools, stage);
+    detail.append(close, heading, specs, el('div', 'ad-view-head', el('h3', '', '资产预览'), switcher), stage);
     if (mode === 'cube') {
       attachPreview(stage, a);
       return;
@@ -202,11 +223,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       el('span', 'ad-view-caption', label), original);
     const strip = el('div', 'ad-filmstrip');
     for (const [index, item] of shots.entries()) {
-      const thumb = action('', 'ad-thumb', () => {
-        shotIndex = index;
-        renderDetail();
-        detail.querySelector('.ad-thumb[aria-pressed="true"]').focus();
-      });
+      const thumb = action('', 'ad-thumb', () => { shotIndex = index; renderDetail(); });
       thumb.append(photo(item, '', 'ad-thumb-photo' + (a.benchmarkFraming ? ' ad-crop' : '')), viewNames[item.view] || item.view);
       thumb.setAttribute('aria-pressed', String(index === shotIndex));
       strip.append(thumb);
@@ -223,10 +240,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     stage.append(host);
     const controller = new AbortController();
     let cleanup;
-    stopPreview = () => {
-      controller.abort();
-      cleanup?.();
-    };
+    stopPreview = () => { controller.abort(); cleanup?.(); };
     Promise.resolve().then(() => {
       if (!controller.signal.aborted) return previewAdapter.mount(host, asset, { signal: controller.signal });
     }).then(release => {
@@ -238,5 +252,5 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     });
   }
 
-  return { destroy() { stopPreview(); stopPreview = () => {}; shell.remove(); } };
+  return { destroy() { document.removeEventListener('keydown', onKeydown); stopPreview(); stopPreview = () => {}; shell.remove(); } };
 }
