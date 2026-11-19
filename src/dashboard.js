@@ -126,9 +126,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     el('fieldset', 'assetlib-filter-group', el('legend', '', '风格类型'), styleOptions));
   filterForm.onchange = updateList;
   const list = el('div', 'assetlib-list');
-  const backdrop = el('button', 'assetlib-drawer-backdrop');
-  backdrop.type = 'button';
-  backdrop.setAttribute('aria-label', '关闭资产详情');
+  const backdrop = el('div', 'assetlib-drawer-backdrop');
   const detail = el('aside', 'assetlib-panel assetlib-detail');
   detail.setAttribute('aria-label', '资产详情');
   const close = action('', 'assetlib-drawer-close', () => closeDrawer());
