@@ -15,6 +15,7 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-dashboard :is(button,input,select) { font: inherit; color: inherit; }
 .assetlib-dashboard :is(button,select,a) { cursor: pointer; }
 .assetlib-dashboard button { background: none; border: 0; }
+.assetlib-dashboard [hidden] { display: none !important; }
 .assetlib-dashboard :focus-visible { outline: 3px solid #52896f; outline-offset: 2px; }
 .assetlib-dashboard code { font: 12px/1.4 "IBM Plex Mono", ui-monospace, monospace; }
 .assetlib-dashboard .assetlib-icon { width: 18px; height: 18px; display: inline-flex; flex: none; align-items: center; justify-content: center; }
@@ -27,12 +28,12 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-nav { display: flex; align-items: center; gap: 4px; }
 .assetlib-nav button { padding: 6px 10px; border-radius: 6px; color: var(--muted); white-space: nowrap; }
 .assetlib-dashboard .assetlib-nav button:hover, .assetlib-dashboard .assetlib-nav button[aria-pressed=true] { background: #edf4ec; color: var(--accent); }
-.assetlib-total, .assetlib-section-label, .assetlib-filter-foot, .assetlib-specs dt { color: var(--muted); font-size: 12px; }
+.assetlib-total, .assetlib-section-label, .assetlib-specs dt { color: var(--muted); font-size: 12px; }
 .assetlib-content { max-width: 1496px; margin: auto; padding: 29px 28px 44px; }
-.assetlib-page-title, .assetlib-panel-title, .assetlib-filter-foot, .assetlib-view-head, .assetlib-strip-label, .assetlib-detail-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.assetlib-page-title, .assetlib-panel-title, .assetlib-view-head, .assetlib-strip-label, .assetlib-detail-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .assetlib-page-title { justify-content: flex-start; gap: 14px; margin-bottom: 20px; }
 .assetlib-dashboard h1 { font-size: clamp(26px, 2.4vw, 34px); letter-spacing: -.05em; line-height: 1.25; }
-.assetlib-total, .assetlib-count { font-variant-numeric: tabular-nums; }
+.assetlib-total { font-variant-numeric: tabular-nums; }
 .assetlib-baseline { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; padding: 10px 16px; background: #eaf1e9; border: 1px solid #cddccc; color: #345a43; border-radius: 8px; margin-bottom: 18px; }
 .assetlib-baseline-symbol { justify-content: center; }
 .assetlib-baseline h2 { font-size: 13px; padding-right: 12px; border-right: 1px solid #b9ccbb; }
@@ -44,9 +45,7 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-panel-title { padding: 19px 20px 16px; }
 .assetlib-panel-title h2 { gap: 9px; font-size: 16px; }
 .assetlib-panel-title .assetlib-icon { width: 16px; color: var(--muted); }
-.assetlib-count { padding: 1px 8px; background: #f1f3ef; color: var(--muted); border-radius: 5px; font-size: 12px; }
-.assetlib-tools { padding: 16px 16px 0; }
-.assetlib-search { display: flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 8px 0 11px; border: 1px solid #d6ded6; border-radius: 9px; background: #fff; color: #728078; box-shadow: 0 1px 2px #20362908, 0 4px 12px #20362906; transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease; }
+.assetlib-search { width: 350px; min-width: 0; display: flex; align-items: center; gap: 8px; min-height: 38px; padding: 0 8px 0 11px; border: 1px solid #d6ded6; border-radius: 9px; background: #fff; color: #728078; box-shadow: 0 1px 2px #20362908, 0 4px 12px #20362906; transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease; }
 .assetlib-search:hover { border-color: #b9c9bb; background: #fdfefd; }
 .assetlib-search:focus-within { border-color: #52896f; outline: 3px solid #52896f2e; box-shadow: 0 0 0 1px #52896f, 0 5px 16px #245e4817; }
 .assetlib-search input { width: 100%; min-width: 0; height: 36px; font-size: 13px; border: none; background: transparent; outline: 0; }
@@ -56,12 +55,6 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-search-clear:hover { background: #edf3ed; color: var(--accent); }
 .assetlib-search-clear:focus-visible { outline: 2px solid #52896f; outline-offset: 1px; }
 .assetlib-search-clear .assetlib-icon { width: 14px; height: 14px; }
-.assetlib-filters { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 7px; margin: 12px 0 14px; }
-.assetlib-filters label { display: grid; gap: 4px; min-width: 0; font-size: 11px; color: var(--muted); }
-.assetlib-filters select { min-width: 0; width: 100%; text-overflow: ellipsis; font-size: 12px; height: 32px; background: white; border: 1px solid var(--line); border-radius: 5px; padding: 0 3px; }
-.assetlib-filter-foot { font-size: 11px; border-bottom: 1px solid var(--line); padding-bottom: 9px; }
-.assetlib-link { font-size: 12px; color: var(--accent); }
-.assetlib-link:disabled { color: #737c77; cursor: default; }
 .assetlib-list { display: grid; gap: 5px; padding: 10px; }
 .assetlib-dashboard .assetlib-row { display: flex; align-items: center; width: 100%; gap: 12px; padding: 10px; text-align: left; border: 1px solid transparent; border-radius: 7px; }
 .assetlib-row:hover { background: #f6f8f5; }
@@ -143,19 +136,15 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-content { max-width: 1540px; padding-top: 32px; }
 .assetlib-library { min-height: calc(100vh - 124px); }
 .assetlib-library > .assetlib-panel-title { padding: 18px 22px 14px; }
-.assetlib-panel-title h1 { font-size: 24px; letter-spacing: -.04em; }
-.assetlib-tools { padding: 14px 22px 0; }
-.assetlib-toolbar-row { display: flex; align-items: end; gap: 10px; }
-.assetlib-toolbar-row .assetlib-search { flex: 1 1 280px; }
-.assetlib-select-wrap { position: relative; display: grid; gap: 4px; min-width: 142px; color: var(--muted); font-size: 11px; }
-.assetlib-select-wrap select { width: 100%; height: 38px; appearance: none; border: 1px solid #d6ded6; border-radius: 9px; padding: 0 34px 0 11px; background: #fff; box-shadow: 0 1px 2px #20362908, 0 4px 12px #20362906; font-size: 13px; cursor: pointer; transition: border-color .16s ease, box-shadow .16s ease, background-color .16s ease; }
-.assetlib-select-wrap select:hover { border-color: #b9c9bb; background: #fdfefd; }
-.assetlib-select-wrap select:active { border-color: #52896f; background: #f5faf5; }
-.assetlib-select-wrap select:focus { border-color: #52896f; outline: 3px solid #52896f2e; box-shadow: 0 0 0 1px #52896f, 0 5px 16px #245e4817; }
-.assetlib-select-wrap > .assetlib-icon { position: absolute; right: 11px; bottom: 11px; width: 15px; height: 15px; color: #60756a; pointer-events: none; }
-.assetlib-toolbar-row .assetlib-link { height: 38px; padding: 0 9px; border-radius: 8px; color: var(--accent); }
-.assetlib-toolbar-row .assetlib-link:hover { background: #edf3ed; }
-.assetlib-filter-foot { justify-content: flex-end; border-bottom: 0; padding: 10px 0 2px; }
+.assetlib-panel-title h1 { min-width: 0; font-size: 24px; letter-spacing: -.04em; white-space: nowrap; }
+.assetlib-filter-group { min-width: 0; margin: 0; padding: 0 22px 12px; border: 0; }
+.assetlib-filter-group legend { margin-bottom: 6px; padding: 0; color: var(--muted); font-size: 11px; }
+.assetlib-filter-options { display: flex; flex-wrap: wrap; gap: 6px; }
+.assetlib-filter-option { display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: #fff; font-size: 12px; cursor: pointer; transition: border-color .16s ease, color .16s ease, background-color .16s ease; }
+.assetlib-filter-option:hover { border-color: #b9c9bb; background: #fdfefd; }
+.assetlib-filter-option:has(input:checked) { border-color: #8fb59b; background: #edf4ec; color: var(--accent); }
+.assetlib-filter-option input { margin: 0; accent-color: var(--accent); }
+.assetlib-filter-option input:focus-visible { outline: 2px solid #52896f; outline-offset: 2px; }
 .assetlib-list { grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; padding: 18px 22px 26px; }
 .assetlib-dashboard .assetlib-card { display: grid; min-width: 0; padding: 0; overflow: hidden; text-align: left; border: 1px solid var(--line); border-radius: 9px; background: #fff; box-shadow: 0 1px 1px #25343009; transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease; }
 .assetlib-dashboard .assetlib-card:hover { transform: translateY(-2px); border-color: #a7c0ae; box-shadow: 0 7px 20px #25343012; }
@@ -180,9 +169,8 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-detail-head { padding-right: 42px; }
 @media (max-width: 700px) {
   .assetlib-content { padding: 18px 12px 28px; }
-  .assetlib-toolbar-row { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
-  .assetlib-toolbar-row .assetlib-search { grid-column: 1 / -1; }
-  .assetlib-toolbar-row .assetlib-link { justify-self: start; }
+  .assetlib-panel-title { align-items: flex-start; flex-wrap: wrap; }
+  .assetlib-panel-title .assetlib-search { width: min(350px, 100%); }
   .assetlib-search-clear { width: 28px; height: 28px; }
   .assetlib-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding-inline: 12px; }
   .assetlib-card-photo { min-height: 154px; }

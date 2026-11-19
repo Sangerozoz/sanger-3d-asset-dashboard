@@ -11,7 +11,6 @@ const paths = {
   image: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m4 18 5-5 3 3 4-6 5 7"/>',
   search: '<circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/>',
   arrow: '<path d="m9 6 6 6-6 6"/>',
-  chevron: '<path d="m7 9 5 5 5-5"/>',
   open: '<path d="M14 4h6v6m0-6-9 9M10 5H5v14h14v-5"/>',
   close: '<path d="M6 6l12 12M18 6 6 18"/>'
 };
@@ -55,8 +54,15 @@ function action(label, cls, fn) {
   button.onclick = fn;
   return button;
 }
-function uniqueOptions(assets, field, format) {
-  return [...new Set(assets.map(asset => asset[field]))].sort().map(value => new Option(format(value), value));
+function renderFilterOptions(group, name, allLabel, values, format) {
+  group.replaceChildren(...['', ...values].map(value => {
+    const input = el('input');
+    input.type = 'radio';
+    input.name = name;
+    input.value = value;
+    input.checked = value === '';
+    return el('label', 'assetlib-filter-option', input, el('span', '', value ? format(value) : allLabel));
+  }));
 }
 
 const assetNames = { 'worker-sanger': '小工匠（Sanger）', 'chef-sanger': '自由厨师（Sanger）' };
@@ -112,22 +118,13 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     search.focus();
   };
   search.oninput = updateList;
-  const category = el('select');
-  category.setAttribute('aria-label', '资产分类');
   const typeValues = [...new Set([...assets.map(asset => asset.assetType), ...Object.keys(assetTypeNames)].filter(Boolean))];
-  category.onchange = updateList;
-  const style = el('select');
-  style.setAttribute('aria-label', '风格类型');
-  style.onchange = updateList;
-  const reset = action('重置', 'assetlib-link', () => {
-    search.value = '';
-    category.value = '';
-    style.value = '';
-    updateList();
-    search.focus();
-  });
-  const count = el('span', 'assetlib-count');
-  count.setAttribute('aria-live', 'polite');
+  const categoryOptions = el('div', 'assetlib-filter-options');
+  const styleOptions = el('div', 'assetlib-filter-options');
+  const filterForm = el('form', 'assetlib-tools',
+    el('fieldset', 'assetlib-filter-group', el('legend', '', '分类'), categoryOptions),
+    el('fieldset', 'assetlib-filter-group', el('legend', '', '风格类型'), styleOptions));
+  filterForm.onchange = updateList;
   const list = el('div', 'assetlib-list');
   const backdrop = el('button', 'assetlib-drawer-backdrop');
   backdrop.type = 'button';
@@ -138,23 +135,10 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   close.setAttribute('aria-label', '关闭资产详情');
   close.append(icon('close'));
   detail.append(close);
-  function filters() {
-    return [
-      ['assetType', category.value],
-      ['styleId', style.value]
-    ];
-  }
-  const tools = el('div', 'assetlib-tools',
-    el('div', 'assetlib-toolbar-row',
-      el('label', 'assetlib-search', icon('search'), search, searchClear),
-      el('label', 'assetlib-select-wrap', '分类', category, icon('chevron')),
-      el('label', 'assetlib-select-wrap', '风格类型', style, icon('chevron')),
-      reset),
-    el('div', 'assetlib-filter-foot', count));
   const pageTitle = el('h1', '');
   const library = el('section', 'assetlib-library',
-    el('div', 'assetlib-panel-title', pageTitle),
-    tools, list);
+    el('div', 'assetlib-panel-title', pageTitle, el('div', 'assetlib-search', icon('search'), search, searchClear)),
+    filterForm, list);
   const modelsTab = action('3D 资产', '', () => switchSection(false));
   const animationsTab = action('骨骼动画', '', () => switchSection(true));
   const nav = el('nav', 'assetlib-nav', modelsTab, animationsTab);
@@ -179,11 +163,10 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     modelsTab.setAttribute('aria-pressed', String(!animations));
     animationsTab.setAttribute('aria-pressed', String(animations));
     const sectionTypes = typeValues.filter(value => (value === 'animation-rig') === animations);
-    category.replaceChildren(new Option('全部分类', ''), ...sectionTypes.sort().map(value => new Option(assetTypeNames[value] || value, value)));
-    style.replaceChildren(new Option('全部风格类型', ''), ...uniqueOptions(sectionAssets, 'styleId', styleName));
+    const sectionStyles = [...new Set(sectionAssets.map(asset => asset.styleId))].sort();
+    renderFilterOptions(categoryOptions, 'assetType', '全部分类', sectionTypes.sort(), value => assetTypeNames[value] || value);
+    renderFilterOptions(styleOptions, 'styleId', '全部风格类型', sectionStyles, styleName);
     search.value = '';
-    category.value = '';
-    style.value = '';
     updateList();
   }
 
@@ -214,12 +197,10 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   function updateList() {
     updateSearchState();
     const query = search.value.trim().toLowerCase();
-    const activeFilters = filters();
-    reset.disabled = !query && activeFilters.every(([, value]) => !value);
+    const activeFilters = [...new FormData(filterForm)];
     const visible = sectionAssets.filter(a => [a.name, a.assetId].some(v => v?.toLowerCase().includes(query)) &&
       activeFilters.every(([field, value]) => !value || a[field] === value));
     if (selected && !visible.includes(selected)) closeDrawer();
-    count.textContent = String(visible.length);
     list.replaceChildren(...visible.map(a => {
       const card = action('', 'assetlib-card', () => openDrawer(a));
       card.setAttribute('aria-label', '查看 ' + (a.name || a.assetId) + ' 详情');
