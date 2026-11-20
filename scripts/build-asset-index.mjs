@@ -71,10 +71,12 @@ async function readAnimationRigs() {
       format: 'glb', fileUrl: 'animation-rigs/kaykit/' + item.file, clips: inspected.clips,
     };
     assert.deepEqual(validateAnimation(animation), [], 'animation-rigs/kaykit: invalid animation metadata: ' + item.file);
+    const displayName = (animationCategoryNames[item.category] ?? item.category) + '动作';
     records.push({
       key,
-      assetId,
-      styleId: 'kaykit-character-animations', assetType: 'animation-rig', version: '1.1.0',
+      assetId, displayName,
+      styleId: 'kaykit-character-animations', styleLabel: 'KayKit 卡通动作',
+      assetType: 'animation-rig', assetTypeLabel: '动作骨骼', version: '1.1.0',
       status: 'candidate', isActive: false,
       screenshots: Object.fromEntries(fixedViews.map(view => [view, null])),
       declaredViews: [], sourceFiles: ['manifest.json', item.file], references: [], generatedAt: null,
@@ -89,6 +91,75 @@ async function readAnimationRigs() {
   assert.equal(records.reduce((count, asset) => count + asset.animation.clips.length, 0), 139,
     'animation-rigs/kaykit: expected 139 clips');
   records.sort((left, right) => Buffer.compare(Buffer.from(left.key), Buffer.from(right.key)));
+  return records;
+}
+
+async function readOpenSourceAssets() {
+  const root = path.join(output, 'open-source');
+  const packages = ['kaykit-adventurers', 'quaternius-sushi', 'kenney-platformer-kit'];
+  const records = [];
+  for (const packageId of packages) {
+    const dir = path.join(root, packageId);
+    const manifestFile = path.join(dir, 'manifest.json');
+    const manifestBytes = await readOptional(manifestFile);
+    if (manifestBytes === null) continue;
+    const manifest = JSON.parse(manifestBytes);
+    assert(manifest.schemaVersion === 1 && manifest.packageId && manifest.provider && manifest.sourceName && manifest.sourceUrl,
+      'open-source/' + packageId + ': invalid package manifest');
+    assert(manifest.license?.spdx === 'CC0-1.0' && manifest.license?.url && manifest.license?.evidenceFile,
+      'open-source/' + packageId + ': invalid CC0 license metadata');
+    assert(Array.isArray(manifest.assets) && manifest.assets.length > 0,
+      'open-source/' + packageId + ': missing asset entries');
+    const licenseFile = 'open-source/' + packageId + '/' + manifest.license.evidenceFile;
+    const licenseBytes = await readOptional(path.join(dir, manifest.license.evidenceFile));
+    assert(licenseBytes !== null && licenseBytes.length > 0, 'open-source/' + packageId + ': missing license evidence');
+    assert(manifest.license.sha256 && Number.isInteger(manifest.license.size),
+      'open-source/' + packageId + ': missing license hash evidence');
+    assert.equal(sha256(licenseBytes), manifest.license.sha256,
+      'open-source/' + packageId + ': license hash mismatch');
+    assert.equal(licenseBytes.length, manifest.license.size,
+      'open-source/' + packageId + ': license size mismatch');
+    const packageManifestFile = 'open-source/' + packageId + '/manifest.json';
+    const assetTypeLabels = { character: '角色', building: '建筑', prop: '道具' };
+    for (const item of manifest.assets) {
+      assert(typeof item.file === 'string' && path.basename(item.file) === item.file && !item.file.includes('\\'),
+        'open-source/' + packageId + ': invalid asset path');
+      assert(item.assetId && item.name && item.category && item.style && assetTypeLabels[item.category],
+        'open-source/' + packageId + ': invalid asset entry');
+      assert(item.sha256 && Number.isInteger(item.size),
+        'open-source/' + packageId + ': missing file hash evidence: ' + item.file);
+      const fileBytes = await readOptional(path.join(dir, item.file));
+      assert(fileBytes !== null && fileBytes.length > 0, 'open-source/' + packageId + ': missing asset file ' + item.file);
+      assert.equal(sha256(fileBytes), item.sha256,
+        'open-source/' + packageId + ': asset hash mismatch: ' + item.file);
+      assert.equal(fileBytes.length, item.size,
+        'open-source/' + packageId + ': asset size mismatch: ' + item.file);
+      const fileUrl = 'open-source/' + packageId + '/' + item.file;
+      const key = 'candidates/' + packageId + '/' + item.category + '/' + item.assetId;
+      records.push({
+        key, assetId: item.assetId, displayName: item.name, styleId: packageId, styleLabel: item.style,
+        assetType: item.category, assetTypeLabel: assetTypeLabels[item.category],
+        version: manifest.version ?? manifest.archive?.version ?? '1.0.0', status: 'candidate', isActive: false,
+        screenshots: Object.fromEntries(fixedViews.map(view => [view, null])), declaredViews: [],
+        sourceFiles: [packageManifestFile, licenseFile, fileUrl],
+        references: [], generatedAt: null,
+        tags: [item.style, ...(item.tags ?? []), manifest.provider],
+        source: {
+          provider: manifest.provider, sourceName: manifest.sourceName, sourceUrl: manifest.sourceUrl,
+          packageId: manifest.packageId, packageVersion: manifest.version ?? manifest.archive?.version ?? null,
+          retrievedAt: manifest.retrievedAt ?? null, archive: manifest.archive ?? null,
+          license: manifest.license.spdx, licenseUrl: licenseFile, licenseSourceUrl: manifest.license.url, licenseFile,
+          licenseSha256: manifest.license.sha256, licenseSize: manifest.license.size,
+          fileUrl, fileSha256: item.sha256, fileSize: item.size, sourceMember: item.sourceMember ?? null,
+        },
+        validation: {
+          status: 'pass', generatedAt: null,
+          checks: { manifest: true, license: true, licenseHash: true, licenseSize: true, file: true, fileHash: true, fileSize: true }, scores: null, errors: [],
+          warnings: ['模型文件已做静态文件校验，未接入当前内置角色播放器。'],
+        },
+      });
+    }
+  }
   return records;
 }
 
@@ -207,6 +278,7 @@ for (const area of ['baselines', 'candidates']) {
   }
 }
 assets.push(...await readAnimationRigs());
+assets.push(...await readOpenSourceAssets());
 assets.sort((left, right) => Buffer.compare(Buffer.from(left.key), Buffer.from(right.key)));
 const byKey = new Map(assets.map(asset => [asset.key, asset]));
 for (const [styleId, style] of Object.entries(activeBaseline.styles)) {

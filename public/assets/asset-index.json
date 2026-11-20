@@ -21,12 +21,17 @@
   ],
   "filters": {
     "styleIds": [
+      "kaykit-adventurers",
       "kaykit-character-animations",
+      "kenney-platformer-kit",
+      "quaternius-sushi",
       "sanger-rounded-toy"
     ],
     "assetTypes": [
       "animation-rig",
-      "character"
+      "building",
+      "character",
+      "prop"
     ],
     "statuses": [
       "accepted",
@@ -143,10 +148,421 @@
       }
     },
     {
+      "key": "candidates/kaykit-adventurers/character/barbarian-kaykit",
+      "assetId": "barbarian-kaykit",
+      "displayName": "野蛮人冒险者",
+      "styleId": "kaykit-adventurers",
+      "styleLabel": "卡通低多边形",
+      "assetType": "character",
+      "assetTypeLabel": "角色",
+      "version": "2.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/kaykit-adventurers/manifest.json",
+        "open-source/kaykit-adventurers/License.txt",
+        "open-source/kaykit-adventurers/Barbarian.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "卡通低多边形",
+        "KayKit"
+      ],
+      "source": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Adventurers 2.0 FREE",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-adventurers",
+        "packageId": "kaykit-adventurers-free",
+        "packageVersion": "2.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/kaykit-adventurers/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/kaykit-adventurers/License.txt",
+        "licenseSha256": "d4adc31660d1db22eb60eba648e01db41577548f6fa1a3576cb4a6283dae0a58",
+        "licenseSize": 1554,
+        "fileUrl": "open-source/kaykit-adventurers/Barbarian.glb",
+        "fileSha256": "d37824a1d6e8e8af57ef9ae4a87e9271c3986210fbc432fb44670749a577ccac",
+        "fileSize": 386648,
+        "sourceMember": "characters/Barbarian.glb"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-adventurers/character/knight-kaykit",
+      "assetId": "knight-kaykit",
+      "displayName": "骑士冒险者",
+      "styleId": "kaykit-adventurers",
+      "styleLabel": "卡通低多边形",
+      "assetType": "character",
+      "assetTypeLabel": "角色",
+      "version": "2.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/kaykit-adventurers/manifest.json",
+        "open-source/kaykit-adventurers/License.txt",
+        "open-source/kaykit-adventurers/Knight.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "卡通低多边形",
+        "KayKit"
+      ],
+      "source": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Adventurers 2.0 FREE",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-adventurers",
+        "packageId": "kaykit-adventurers-free",
+        "packageVersion": "2.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/kaykit-adventurers/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/kaykit-adventurers/License.txt",
+        "licenseSha256": "d4adc31660d1db22eb60eba648e01db41577548f6fa1a3576cb4a6283dae0a58",
+        "licenseSize": 1554,
+        "fileUrl": "open-source/kaykit-adventurers/Knight.glb",
+        "fileSha256": "e484370733824a0740683e7f6040aae0d20e5efd4107dde1175d6a2ad7e2f199",
+        "fileSize": 341688,
+        "sourceMember": null
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-adventurers/character/mage-kaykit",
+      "assetId": "mage-kaykit",
+      "displayName": "法师冒险者",
+      "styleId": "kaykit-adventurers",
+      "styleLabel": "卡通低多边形",
+      "assetType": "character",
+      "assetTypeLabel": "角色",
+      "version": "2.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/kaykit-adventurers/manifest.json",
+        "open-source/kaykit-adventurers/License.txt",
+        "open-source/kaykit-adventurers/Mage.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "卡通低多边形",
+        "KayKit"
+      ],
+      "source": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Adventurers 2.0 FREE",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-adventurers",
+        "packageId": "kaykit-adventurers-free",
+        "packageVersion": "2.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/kaykit-adventurers/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/kaykit-adventurers/License.txt",
+        "licenseSha256": "d4adc31660d1db22eb60eba648e01db41577548f6fa1a3576cb4a6283dae0a58",
+        "licenseSize": 1554,
+        "fileUrl": "open-source/kaykit-adventurers/Mage.glb",
+        "fileSha256": "1f7d891bde50b879c70965f155b7b765b166dc3f8518e5abb86c0002f191a26e",
+        "fileSize": 352472,
+        "sourceMember": "characters/Mage.glb"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-adventurers/character/ranger-kaykit",
+      "assetId": "ranger-kaykit",
+      "displayName": "游侠冒险者",
+      "styleId": "kaykit-adventurers",
+      "styleLabel": "卡通低多边形",
+      "assetType": "character",
+      "assetTypeLabel": "角色",
+      "version": "2.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/kaykit-adventurers/manifest.json",
+        "open-source/kaykit-adventurers/License.txt",
+        "open-source/kaykit-adventurers/Ranger.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "卡通低多边形",
+        "KayKit"
+      ],
+      "source": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Adventurers 2.0 FREE",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-adventurers",
+        "packageId": "kaykit-adventurers-free",
+        "packageVersion": "2.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/kaykit-adventurers/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/kaykit-adventurers/License.txt",
+        "licenseSha256": "d4adc31660d1db22eb60eba648e01db41577548f6fa1a3576cb4a6283dae0a58",
+        "licenseSize": 1554,
+        "fileUrl": "open-source/kaykit-adventurers/Ranger.glb",
+        "fileSha256": "3a0b0166b9d61d58dcaaa739c3cc0538be46e00d2928dd5cb513d9a41770d2e9",
+        "fileSize": 484712,
+        "sourceMember": "characters/Ranger.glb"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-adventurers/character/rogue-hooded-kaykit",
+      "assetId": "rogue-hooded-kaykit",
+      "displayName": "兜帽盗贼冒险者",
+      "styleId": "kaykit-adventurers",
+      "styleLabel": "卡通低多边形",
+      "assetType": "character",
+      "assetTypeLabel": "角色",
+      "version": "2.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/kaykit-adventurers/manifest.json",
+        "open-source/kaykit-adventurers/License.txt",
+        "open-source/kaykit-adventurers/Rogue_Hooded.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "卡通低多边形",
+        "KayKit"
+      ],
+      "source": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Adventurers 2.0 FREE",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-adventurers",
+        "packageId": "kaykit-adventurers-free",
+        "packageVersion": "2.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/kaykit-adventurers/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/kaykit-adventurers/License.txt",
+        "licenseSha256": "d4adc31660d1db22eb60eba648e01db41577548f6fa1a3576cb4a6283dae0a58",
+        "licenseSize": 1554,
+        "fileUrl": "open-source/kaykit-adventurers/Rogue_Hooded.glb",
+        "fileSha256": "e8f3233c6db190506fbef3ad855683e6cb8bd7350de637d923e14a08aef088dc",
+        "fileSize": 381432,
+        "sourceMember": "characters/Rogue_Hooded.glb"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/kaykit-adventurers/character/rogue-kaykit",
+      "assetId": "rogue-kaykit",
+      "displayName": "盗贼冒险者",
+      "styleId": "kaykit-adventurers",
+      "styleLabel": "卡通低多边形",
+      "assetType": "character",
+      "assetTypeLabel": "角色",
+      "version": "2.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/kaykit-adventurers/manifest.json",
+        "open-source/kaykit-adventurers/License.txt",
+        "open-source/kaykit-adventurers/Rogue.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "卡通低多边形",
+        "KayKit"
+      ],
+      "source": {
+        "provider": "KayKit",
+        "sourceName": "KayKit Adventurers 2.0 FREE",
+        "sourceUrl": "https://kaylousberg.itch.io/kaykit-adventurers",
+        "packageId": "kaykit-adventurers-free",
+        "packageVersion": "2.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/kaykit-adventurers/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/kaykit-adventurers/License.txt",
+        "licenseSha256": "d4adc31660d1db22eb60eba648e01db41577548f6fa1a3576cb4a6283dae0a58",
+        "licenseSize": 1554,
+        "fileUrl": "open-source/kaykit-adventurers/Rogue.glb",
+        "fileSha256": "cae5d9b2f08d53f7b4ab2617d9f42f021c546eb10920455fdcd82a110867fae4",
+        "fileSize": 409188,
+        "sourceMember": null
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
       "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_combatmelee",
       "assetId": "rig_medium_combatmelee",
+      "displayName": "近战动作",
       "styleId": "kaykit-character-animations",
+      "styleLabel": "KayKit 卡通动作",
       "assetType": "animation-rig",
+      "assetTypeLabel": "动作骨骼",
       "version": "1.1.0",
       "status": "candidate",
       "isActive": false,
@@ -226,8 +642,11 @@
     {
       "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_combatranged",
       "assetId": "rig_medium_combatranged",
+      "displayName": "远程战斗动作",
       "styleId": "kaykit-character-animations",
+      "styleLabel": "KayKit 卡通动作",
       "assetType": "animation-rig",
+      "assetTypeLabel": "动作骨骼",
       "version": "1.1.0",
       "status": "candidate",
       "isActive": false,
@@ -305,8 +724,11 @@
     {
       "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_general",
       "assetId": "rig_medium_general",
+      "displayName": "通用动作",
       "styleId": "kaykit-character-animations",
+      "styleLabel": "KayKit 卡通动作",
       "assetType": "animation-rig",
+      "assetTypeLabel": "动作骨骼",
       "version": "1.1.0",
       "status": "candidate",
       "isActive": false,
@@ -379,8 +801,11 @@
     {
       "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_movementadvanced",
       "assetId": "rig_medium_movementadvanced",
+      "displayName": "进阶移动动作",
       "styleId": "kaykit-character-animations",
+      "styleLabel": "KayKit 卡通动作",
       "assetType": "animation-rig",
+      "assetTypeLabel": "动作骨骼",
       "version": "1.1.0",
       "status": "candidate",
       "isActive": false,
@@ -451,8 +876,11 @@
     {
       "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_movementbasic",
       "assetId": "rig_medium_movementbasic",
+      "displayName": "基础移动动作",
       "styleId": "kaykit-character-animations",
+      "styleLabel": "KayKit 卡通动作",
       "assetType": "animation-rig",
+      "assetTypeLabel": "动作骨骼",
       "version": "1.1.0",
       "status": "candidate",
       "isActive": false,
@@ -521,8 +949,11 @@
     {
       "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_simulation",
       "assetId": "rig_medium_simulation",
+      "displayName": "模拟动作",
       "styleId": "kaykit-character-animations",
+      "styleLabel": "KayKit 卡通动作",
       "assetType": "animation-rig",
+      "assetTypeLabel": "动作骨骼",
       "version": "1.1.0",
       "status": "candidate",
       "isActive": false,
@@ -594,8 +1025,11 @@
     {
       "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_special",
       "assetId": "rig_medium_special",
+      "displayName": "特殊动作",
       "styleId": "kaykit-character-animations",
+      "styleLabel": "KayKit 卡通动作",
       "assetType": "animation-rig",
+      "assetTypeLabel": "动作骨骼",
       "version": "1.1.0",
       "status": "candidate",
       "isActive": false,
@@ -668,8 +1102,11 @@
     {
       "key": "candidates/kaykit-character-animations/animation-rig/rig_medium_tools",
       "assetId": "rig_medium_tools",
+      "displayName": "工具动作",
       "styleId": "kaykit-character-animations",
+      "styleLabel": "KayKit 卡通动作",
       "assetType": "animation-rig",
+      "assetTypeLabel": "动作骨骼",
       "version": "1.1.0",
       "status": "candidate",
       "isActive": false,
@@ -750,6 +1187,1177 @@
         "errors": [],
         "warnings": [
           "Playback and retargeting are not tested; static file validation only."
+        ]
+      }
+    },
+    {
+      "key": "candidates/kenney-platformer-kit/building/block-grass-kenney",
+      "assetId": "block-grass-kenney",
+      "displayName": "草地平台",
+      "styleId": "kenney-platformer-kit",
+      "styleLabel": "明亮卡通低多边形",
+      "assetType": "building",
+      "assetTypeLabel": "建筑",
+      "version": "4.1",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/kenney-platformer-kit/manifest.json",
+        "open-source/kenney-platformer-kit/License.txt",
+        "open-source/kenney-platformer-kit/block-grass.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "明亮卡通低多边形",
+        "Kenney"
+      ],
+      "source": {
+        "provider": "Kenney",
+        "sourceName": "Platformer Kit",
+        "sourceUrl": "https://kenney.nl/assets/platformer-kit",
+        "packageId": "kenney-platformer-kit",
+        "packageVersion": "4.1",
+        "retrievedAt": "2026-11-19",
+        "archive": {
+          "fileName": "kenney-platformer-kit.zip",
+          "sha256": "899605d237367688c6b42e41fff2206c0fb8d626163158294556353f7baa7c1b",
+          "size": 4640135,
+          "version": "4.1"
+        },
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/kenney-platformer-kit/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/kenney-platformer-kit/License.txt",
+        "licenseSha256": "e1185354d8f0f055c325c7204602326c8cf0c47ee5ae1db7ed16f0465b91bb9a",
+        "licenseSize": 703,
+        "fileUrl": "open-source/kenney-platformer-kit/block-grass.glb",
+        "fileSha256": "8cd2f9ec083b2b7cfe89d95c53ef8adf369d1e5e6adf125f063122d4998c336f",
+        "fileSize": 10192,
+        "sourceMember": "Models/GLB format/block-grass.glb"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/kenney-platformer-kit/character/character-oobi-kenney",
+      "assetId": "character-oobi-kenney",
+      "displayName": "奥比平台角色",
+      "styleId": "kenney-platformer-kit",
+      "styleLabel": "明亮卡通低多边形",
+      "assetType": "character",
+      "assetTypeLabel": "角色",
+      "version": "4.1",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/kenney-platformer-kit/manifest.json",
+        "open-source/kenney-platformer-kit/License.txt",
+        "open-source/kenney-platformer-kit/character-oobi.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "明亮卡通低多边形",
+        "Kenney"
+      ],
+      "source": {
+        "provider": "Kenney",
+        "sourceName": "Platformer Kit",
+        "sourceUrl": "https://kenney.nl/assets/platformer-kit",
+        "packageId": "kenney-platformer-kit",
+        "packageVersion": "4.1",
+        "retrievedAt": "2026-11-19",
+        "archive": {
+          "fileName": "kenney-platformer-kit.zip",
+          "sha256": "899605d237367688c6b42e41fff2206c0fb8d626163158294556353f7baa7c1b",
+          "size": 4640135,
+          "version": "4.1"
+        },
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/kenney-platformer-kit/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/kenney-platformer-kit/License.txt",
+        "licenseSha256": "e1185354d8f0f055c325c7204602326c8cf0c47ee5ae1db7ed16f0465b91bb9a",
+        "licenseSize": 703,
+        "fileUrl": "open-source/kenney-platformer-kit/character-oobi.glb",
+        "fileSha256": "42cb1889e1ef6404f3d6b5d5ac6b79c9d9a60bc54fd82df83c63c664705873e4",
+        "fileSize": 236392,
+        "sourceMember": "Models/GLB format/character-oobi.glb"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/kenney-platformer-kit/prop/barrel-kenney",
+      "assetId": "barrel-kenney",
+      "displayName": "木桶道具",
+      "styleId": "kenney-platformer-kit",
+      "styleLabel": "明亮卡通低多边形",
+      "assetType": "prop",
+      "assetTypeLabel": "道具",
+      "version": "4.1",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/kenney-platformer-kit/manifest.json",
+        "open-source/kenney-platformer-kit/License.txt",
+        "open-source/kenney-platformer-kit/barrel.glb"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "明亮卡通低多边形",
+        "Kenney"
+      ],
+      "source": {
+        "provider": "Kenney",
+        "sourceName": "Platformer Kit",
+        "sourceUrl": "https://kenney.nl/assets/platformer-kit",
+        "packageId": "kenney-platformer-kit",
+        "packageVersion": "4.1",
+        "retrievedAt": "2026-11-19",
+        "archive": {
+          "fileName": "kenney-platformer-kit.zip",
+          "sha256": "899605d237367688c6b42e41fff2206c0fb8d626163158294556353f7baa7c1b",
+          "size": 4640135,
+          "version": "4.1"
+        },
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/kenney-platformer-kit/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/kenney-platformer-kit/License.txt",
+        "licenseSha256": "e1185354d8f0f055c325c7204602326c8cf0c47ee5ae1db7ed16f0465b91bb9a",
+        "licenseSize": 703,
+        "fileUrl": "open-source/kenney-platformer-kit/barrel.glb",
+        "fileSha256": "a65835b830699e58810f4f9afdd54ddff9537fd6d23f6f2bd3af1a59bbdff149",
+        "fileSize": 14092,
+        "sourceMember": "Models/GLB format/barrel.glb"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/building/counter-sink-quaternius",
+      "assetId": "counter-sink-quaternius",
+      "displayName": "水槽操作台",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "building",
+      "assetTypeLabel": "建筑",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Environment_Counter_Sink.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Environment_Counter_Sink.gltf",
+        "fileSha256": "58d779cd427fab3013b93e18f433e0705a024bc8ea0a6127a42079acd406060e",
+        "fileSize": 66007,
+        "sourceMember": "environment/Environment_Counter_Sink.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/building/counter-straight-quaternius",
+      "assetId": "counter-straight-quaternius",
+      "displayName": "直线操作台",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "building",
+      "assetTypeLabel": "建筑",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Environment_Counter_Straight.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Environment_Counter_Straight.gltf",
+        "fileSha256": "2473d293db358c6f798cb699db8e8ae22e875d74b408f82e5d86338ea3d356f2",
+        "fileSize": 46704,
+        "sourceMember": "environment/Environment_Counter_Straight.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/building/cutting-table-quaternius",
+      "assetId": "cutting-table-quaternius",
+      "displayName": "料理切配台",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "building",
+      "assetTypeLabel": "建筑",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Environment_CuttingTable.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Environment_CuttingTable.gltf",
+        "fileSha256": "05ff68ed865e833bccca4764ed8f342804ad24bb0c32a67341c5e5f3e56f0e56",
+        "fileSize": 36311,
+        "sourceMember": "environment/Environment_CuttingTable.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/building/kitchen-floor-quaternius",
+      "assetId": "kitchen-floor-quaternius",
+      "displayName": "厨房地面",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "building",
+      "assetTypeLabel": "建筑",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Floor_Kitchen1.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Floor_Kitchen1.gltf",
+        "fileSha256": "d5bb662524bc53579448968030e7f6cb5a180557021320a93ed290cb804a1780",
+        "fileSize": 16031,
+        "sourceMember": null
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/building/wall-redwood-quaternius",
+      "assetId": "wall-redwood-quaternius",
+      "displayName": "红木墙面",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "building",
+      "assetTypeLabel": "建筑",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Wall_RedWood.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Wall_RedWood.gltf",
+        "fileSha256": "3dfbbd432e4b3bf4193c0a1f8affaa4c53e321ee28abe3948fe931bd5358e9d2",
+        "fileSize": 47402,
+        "sourceMember": "environment/Wall_RedWood.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/building/wall-shoji-quaternius",
+      "assetId": "wall-shoji-quaternius",
+      "displayName": "障子室内墙",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "building",
+      "assetTypeLabel": "建筑",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Wall_Shoji_Interior.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Wall_Shoji_Interior.gltf",
+        "fileSha256": "2a1539a03a55482d1276b4d9ed26b800d134b946a61de0c62c4b836495b29963",
+        "fileSize": 20165,
+        "sourceMember": "environment/Wall_Shoji_Interior.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/character/panda-quaternius",
+      "assetId": "panda-quaternius",
+      "displayName": "熊猫角色",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "character",
+      "assetTypeLabel": "角色",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Panda.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Panda.gltf",
+        "fileSha256": "5435611ac6943bc15e84df75d22171da279c3fdc6fd762f7cf5475ba1faaf964",
+        "fileSize": 2301722,
+        "sourceMember": null
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/prop/fridge-quaternius",
+      "assetId": "fridge-quaternius",
+      "displayName": "餐厅冰箱",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "prop",
+      "assetTypeLabel": "道具",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Environment_Fridge.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Environment_Fridge.gltf",
+        "fileSha256": "86838afce21b10b657ce2b224c1f02e8197e99ff1ce167ed2a7edc5954260e64",
+        "fileSize": 77387,
+        "sourceMember": "environment/Environment_Fridge.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/prop/gyoza-quaternius",
+      "assetId": "gyoza-quaternius",
+      "displayName": "煎饺食物",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "prop",
+      "assetTypeLabel": "道具",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Food_Gyoza.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Food_Gyoza.gltf",
+        "fileSha256": "088d4cd9264504f54151f915379f354b85a6f08289ee2d35b288e29a9c84aa9c",
+        "fileSize": 45343,
+        "sourceMember": "food/Food_Gyoza.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/prop/light-quaternius",
+      "assetId": "light-quaternius",
+      "displayName": "餐厅吊灯",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "prop",
+      "assetTypeLabel": "道具",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Decoration_Light.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Decoration_Light.gltf",
+        "fileSha256": "b02996e57afdf686a53cb79a289928f0eba2302b4a2bb3fc727d379f2c5073da",
+        "fileSize": 29938,
+        "sourceMember": "decoration/Decoration_Light.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/prop/onigiri-quaternius",
+      "assetId": "onigiri-quaternius",
+      "displayName": "饭团食物",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "prop",
+      "assetTypeLabel": "道具",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Food_Onigiri.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Food_Onigiri.gltf",
+        "fileSha256": "92d81f2bea3fd4303381ba9cb3aededd1885fae0570b49f5a09a8199c00ee39a",
+        "fileSize": 25373,
+        "sourceMember": "food/Food_Onigiri.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/prop/oven-quaternius",
+      "assetId": "oven-quaternius",
+      "displayName": "餐厅烤箱",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "prop",
+      "assetTypeLabel": "道具",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Environment_Oven.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Environment_Oven.gltf",
+        "fileSha256": "d05162fdd6c67cd2556d1c71610b8410abcaa9ec8de6c6c0c853b8b965b456e3",
+        "fileSize": 114068,
+        "sourceMember": "environment/Environment_Oven.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/prop/plant-quaternius",
+      "assetId": "plant-quaternius",
+      "displayName": "餐厅盆栽",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "prop",
+      "assetTypeLabel": "道具",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Decoration_Plant1.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Decoration_Plant1.gltf",
+        "fileSha256": "76b80c5e997021d2b61f3014b5fe33f4a7799d2fb4b500b4f6318d6ef15b62d5",
+        "fileSize": 37710,
+        "sourceMember": "decoration/Decoration_Plant1.gltf"
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
+        ]
+      }
+    },
+    {
+      "key": "candidates/quaternius-sushi/prop/ramen-quaternius",
+      "assetId": "ramen-quaternius",
+      "displayName": "拉面道具",
+      "styleId": "quaternius-sushi",
+      "styleLabel": "日式卡通低多边形",
+      "assetType": "prop",
+      "assetTypeLabel": "道具",
+      "version": "1.0.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "open-source/quaternius-sushi/manifest.json",
+        "open-source/quaternius-sushi/License.txt",
+        "open-source/quaternius-sushi/Food_Ramen.gltf"
+      ],
+      "references": [],
+      "generatedAt": null,
+      "tags": [
+        "日式卡通低多边形",
+        "Quaternius"
+      ],
+      "source": {
+        "provider": "Quaternius",
+        "sourceName": "Sushi Restaurant Kit",
+        "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+        "packageId": "quaternius-sushi-restaurant-kit",
+        "packageVersion": "1.0.0",
+        "retrievedAt": "2026-11-19",
+        "archive": null,
+        "license": "CC0-1.0",
+        "licenseUrl": "open-source/quaternius-sushi/License.txt",
+        "licenseSourceUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "licenseFile": "open-source/quaternius-sushi/License.txt",
+        "licenseSha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+        "licenseSize": 208,
+        "fileUrl": "open-source/quaternius-sushi/Food_Ramen.gltf",
+        "fileSha256": "ca52890827734aab5e5cea2c090dc465f6be9ccff336eaa1e99353a3c806977e",
+        "fileSize": 264211,
+        "sourceMember": null
+      },
+      "validation": {
+        "status": "pass",
+        "generatedAt": null,
+        "checks": {
+          "manifest": true,
+          "license": true,
+          "licenseHash": true,
+          "licenseSize": true,
+          "file": true,
+          "fileHash": true,
+          "fileSize": true
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "模型文件已做静态文件校验，未接入当前内置角色播放器。"
         ]
       }
     }

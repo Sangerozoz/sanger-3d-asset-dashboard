@@ -136,6 +136,7 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-content { max-width: 1540px; padding-top: 32px; }
 .assetlib-library { min-height: calc(100vh - 124px); }
 .assetlib-library > .assetlib-panel-title { padding: 18px 22px 14px; }
+.assetlib-panel-heading { display: flex; align-items: center; gap: 14px; min-width: 0; }
 .assetlib-panel-title h1 { min-width: 0; font-size: 24px; letter-spacing: -.04em; white-space: nowrap; }
 .assetlib-tools { display: flex; align-items: flex-start; gap: 24px; padding: 0 22px 12px; }
 .assetlib-filter-group { min-width: 0; margin: 0; padding: 0; border: 0; }
@@ -170,7 +171,6 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 @media (max-width: 700px) {
   .assetlib-content { padding: 18px 12px 28px; }
   .assetlib-panel-title { align-items: flex-start; flex-wrap: wrap; }
-  .assetlib-tools { gap: 12px; }
   .assetlib-panel-title .assetlib-search { width: min(350px, 100%); max-width: 100%; flex: 1 1 350px; }
   .assetlib-search-clear { width: 28px; height: 28px; }
   .assetlib-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding-inline: 12px; }

@@ -3,7 +3,14 @@ import { assetTypeNames, animationCategoryNames } from '../data/asset-types.mjs'
 
 const statusNames = { draft: '草稿', candidate: '候选', review: '待审核', accepted: '已验收', rejected: '已退回', deprecated: '已弃用' };
 const viewNames = { front: '正面', 'three-quarter': '四分之三侧面', side: '侧面', back: '背面', clay: '白模' };
-const styleName = value => value === 'sanger-rounded-toy' ? 'Sanger Rounded Toy' : value;
+const styleLabels = {
+  'sanger-rounded-toy': 'Sanger 圆润玩具',
+  'kaykit-character-animations': 'KayKit 卡通动作',
+  'kaykit-adventurers': 'KayKit 卡通冒险者',
+  'kenney-platformer-kit': 'Kenney 明亮平台',
+  'quaternius-sushi': 'Quaternius 日式卡通',
+};
+const styleName = value => styleLabels[value] || value;
 const paths = {
   cube: '<path d="m12 2 9 5v10l-9 5-9-5V7zM3 7l9 5 9-5M12 12v10M7.5 4.5l9 5"/>',
   layers: '<path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/>',
@@ -57,7 +64,7 @@ function action(label, cls, fn) {
 const assetNames = { 'worker-sanger': '小工匠（Sanger）', 'chef-sanger': '自由厨师（Sanger）' };
 
 export function displayAssetName(record) {
-  return assetNames[record.assetId] || record.displayName || record.assetId;
+  return record.name || assetNames[record.assetId] || record.displayName || record.assetId;
 }
 
 export function filterAssetRecords(records, query = '', activeFilters = []) {
@@ -105,7 +112,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     shots: index.fixedViews.filter(view => record.screenshots[view])
       .map(view => ({ view, url: record.screenshots[view] })),
     benchmarkFraming: record.styleId === 'sanger-rounded-toy' && record.assetId in assetNames,
-    typeLabel: assetTypeNames[record.assetType] || record.assetType,
+    typeLabel: record.assetTypeLabel || assetTypeNames[record.assetType] || record.assetType,
   }));
   let selected = null;
   let displayed;
@@ -140,7 +147,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   filterForm.onclick = event => {
     const option = event.target.closest('button[data-filter]');
     if (!option || !filterForm.contains(option)) return;
-    for (const sibling of filterForm.querySelectorAll(`button[data-filter=\"${option.dataset.filter}\"]`)) {
+    for (const sibling of filterForm.querySelectorAll(`button[data-filter="${option.dataset.filter}"]`)) {
       sibling.setAttribute('aria-pressed', String(sibling === option));
     }
     updateList();
@@ -156,16 +163,16 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   close.append(icon('close'));
   detail.append(close);
   const pageTitle = el('h1', '');
-  const library = el('section', 'assetlib-library',
-    el('div', 'assetlib-panel-title', pageTitle, el('div', 'assetlib-search', icon('search'), search, searchClear)),
-    filterForm, list);
   const modelsTab = action('3D 资产', '', () => switchSection(false));
   const animationsTab = action('骨骼动画', '', () => switchSection(true));
   const nav = el('nav', 'assetlib-nav', modelsTab, animationsTab);
   nav.setAttribute('aria-label', '资产导航');
+  const library = el('section', 'assetlib-library',
+    el('div', 'assetlib-panel-title', el('div', 'assetlib-panel-heading', pageTitle, nav), el('div', 'assetlib-search', icon('search'), search, searchClear)),
+    filterForm, list);
   const brandName = '游戏资产';
   shell.append(
-    el('header', 'assetlib-header', el('div', 'assetlib-brand', el('span', 'assetlib-brand-mark', icon('cube')), brandName), nav),
+    el('header', 'assetlib-header', el('div', 'assetlib-brand', el('span', 'assetlib-brand-mark', icon('cube')), brandName)),
     el('main', 'assetlib-content', library), backdrop, detail);
   document.title = brandName;
   root.setAttribute('aria-label', brandName);
@@ -217,7 +224,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   function updateList() {
     updateSearchState();
     const query = search.value.trim().toLowerCase();
-    const activeFilters = [...filterForm.querySelectorAll('button[data-filter][aria-pressed=\"true\"]')]
+    const activeFilters = [...filterForm.querySelectorAll('button[data-filter][aria-pressed="true"]')]
       .map(option => [option.dataset.filter, option.dataset.value]);
     const visible = filterAssetRecords(sectionAssets, query, activeFilters);
     if (selected && !visible.includes(selected)) closeDrawer();
@@ -249,7 +256,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       el('div', '', el('div', 'assetlib-section-label', '资产详情'), el('h2', '', a.name || a.assetId), el('code', '', a.assetId)),
       el('div', 'assetlib-badges', statusTagFor(a)));
     const specs = el('dl', 'assetlib-specs');
-    for (const [label, value] of [['风格', styleName(a.styleId)], ['类型', a.typeLabel], ['资产版本', 'v' + a.version], ['校验', checkNames[a.validation?.status] || a.validation?.status || '未验证']]) {
+    for (const [label, value] of [['风格', a.styleLabel || styleName(a.styleId)], ['类型', a.typeLabel], ['资产版本', 'v' + a.version], ['校验', checkNames[a.validation?.status] || a.validation?.status || '未验证']]) {
       specs.append(el('div', '', el('dt', '', label), el('dd', '', value)));
     }
     const switcher = el('div', 'assetlib-switch');
@@ -277,6 +284,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     if (!shot) {
       stage.append(el('div', 'assetlib-placeholder', icon('image'), '暂无截图'));
       if (a.animation) renderAnimationSections(a);
+      if (a.source) renderSourceSection(a);
       return;
     }
     const label = viewNames[shot.view] || shot.view;
@@ -296,6 +304,20 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     }
     detail.append(el('div', 'assetlib-strip-label', el('h3', '', '截图视图'), el('code', '', String(shots.length))), strip);
     if (a.animation) renderAnimationSections(a);
+    if (a.source) renderSourceSection(a);
+  }
+
+  function renderSourceSection(asset) {
+    const source = asset.source;
+    detail.append(el('section', 'assetlib-detail-section', el('div', 'assetlib-section-label', '来源与许可'), metadataList([
+      ['提供方', valueOr(source.provider)],
+      ['来源名称', valueOr(source.sourceName)],
+      ['来源链接', safeLink('打开来源', source.sourceUrl)],
+      ['许可', valueOr(source.license)],
+      ['许可链接', safeLink('查看许可', source.licenseUrl)],
+      ['资产文件', safeLink('打开文件', source.fileUrl)],
+      ['风格标签', arrayText(asset.tags)],
+    ])));
   }
 
   function renderAnimationSections(asset) {

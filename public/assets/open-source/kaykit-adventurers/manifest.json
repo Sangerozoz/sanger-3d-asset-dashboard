@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "packageId": "kaykit-adventurers-free",
+  "provider": "KayKit",
+  "sourceName": "KayKit Adventurers 2.0 FREE",
+  "sourceUrl": "https://kaylousberg.itch.io/kaykit-adventurers",
+  "license": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "evidenceFile": "License.txt",
+    "sha256": "d4adc31660d1db22eb60eba648e01db41577548f6fa1a3576cb4a6283dae0a58",
+    "size": 1554
+  },
+  "assets": [
+    {
+      "file": "Rogue.glb",
+      "assetId": "rogue-kaykit",
+      "name": "盗贼冒险者",
+      "category": "character",
+      "style": "卡通低多边形",
+      "sha256": "cae5d9b2f08d53f7b4ab2617d9f42f021c546eb10920455fdcd82a110867fae4",
+      "size": 409188
+    },
+    {
+      "file": "Knight.glb",
+      "assetId": "knight-kaykit",
+      "name": "骑士冒险者",
+      "category": "character",
+      "style": "卡通低多边形",
+      "sha256": "e484370733824a0740683e7f6040aae0d20e5efd4107dde1175d6a2ad7e2f199",
+      "size": 341688
+    },
+    {
+      "file": "Barbarian.glb",
+      "assetId": "barbarian-kaykit",
+      "name": "野蛮人冒险者",
+      "category": "character",
+      "style": "卡通低多边形",
+      "sourceMember": "characters/Barbarian.glb",
+      "sha256": "d37824a1d6e8e8af57ef9ae4a87e9271c3986210fbc432fb44670749a577ccac",
+      "size": 386648
+    },
+    {
+      "file": "Mage.glb",
+      "assetId": "mage-kaykit",
+      "name": "法师冒险者",
+      "category": "character",
+      "style": "卡通低多边形",
+      "sourceMember": "characters/Mage.glb",
+      "sha256": "1f7d891bde50b879c70965f155b7b765b166dc3f8518e5abb86c0002f191a26e",
+      "size": 352472
+    },
+    {
+      "file": "Ranger.glb",
+      "assetId": "ranger-kaykit",
+      "name": "游侠冒险者",
+      "category": "character",
+      "style": "卡通低多边形",
+      "sourceMember": "characters/Ranger.glb",
+      "sha256": "3a0b0166b9d61d58dcaaa739c3cc0538be46e00d2928dd5cb513d9a41770d2e9",
+      "size": 484712
+    },
+    {
+      "file": "Rogue_Hooded.glb",
+      "assetId": "rogue-hooded-kaykit",
+      "name": "兜帽盗贼冒险者",
+      "category": "character",
+      "style": "卡通低多边形",
+      "sourceMember": "characters/Rogue_Hooded.glb",
+      "sha256": "e8f3233c6db190506fbef3ad855683e6cb8bd7350de637d923e14a08aef088dc",
+      "size": 381432
+    }
+  ],
+  "version": "2.0.0",
+  "retrievedAt": "2026-11-19"
+}

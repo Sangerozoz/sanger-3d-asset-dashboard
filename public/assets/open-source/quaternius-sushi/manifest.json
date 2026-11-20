@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "packageId": "quaternius-sushi-restaurant-kit",
+  "provider": "Quaternius",
+  "sourceName": "Sushi Restaurant Kit",
+  "sourceUrl": "https://quaternius.com/packs/sushirestaurantkit.html",
+  "license": {
+    "spdx": "CC0-1.0",
+    "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "evidenceFile": "License.txt",
+    "sha256": "f0fcbc49a8645980ad9760d591756d507108a6e7154d624b2b24648d6af391bd",
+    "size": 208
+  },
+  "assets": [
+    {
+      "file": "Panda.gltf",
+      "assetId": "panda-quaternius",
+      "name": "熊猫角色",
+      "category": "character",
+      "style": "日式卡通低多边形",
+      "sha256": "5435611ac6943bc15e84df75d22171da279c3fdc6fd762f7cf5475ba1faaf964",
+      "size": 2301722
+    },
+    {
+      "file": "Food_Ramen.gltf",
+      "assetId": "ramen-quaternius",
+      "name": "拉面道具",
+      "category": "prop",
+      "style": "日式卡通低多边形",
+      "sha256": "ca52890827734aab5e5cea2c090dc465f6be9ccff336eaa1e99353a3c806977e",
+      "size": 264211
+    },
+    {
+      "file": "Floor_Kitchen1.gltf",
+      "assetId": "kitchen-floor-quaternius",
+      "name": "厨房地面",
+      "category": "building",
+      "style": "日式卡通低多边形",
+      "sha256": "d5bb662524bc53579448968030e7f6cb5a180557021320a93ed290cb804a1780",
+      "size": 16031
+    },
+    {
+      "file": "Decoration_Light.gltf",
+      "assetId": "light-quaternius",
+      "name": "餐厅吊灯",
+      "category": "prop",
+      "style": "日式卡通低多边形",
+      "sourceMember": "decoration/Decoration_Light.gltf",
+      "sha256": "b02996e57afdf686a53cb79a289928f0eba2302b4a2bb3fc727d379f2c5073da",
+      "size": 29938
+    },
+    {
+      "file": "Decoration_Plant1.gltf",
+      "assetId": "plant-quaternius",
+      "name": "餐厅盆栽",
+      "category": "prop",
+      "style": "日式卡通低多边形",
+      "sourceMember": "decoration/Decoration_Plant1.gltf",
+      "sha256": "76b80c5e997021d2b61f3014b5fe33f4a7799d2fb4b500b4f6318d6ef15b62d5",
+      "size": 37710
+    },
+    {
+      "file": "Environment_Counter_Sink.gltf",
+      "assetId": "counter-sink-quaternius",
+      "name": "水槽操作台",
+      "category": "building",
+      "style": "日式卡通低多边形",
+      "sourceMember": "environment/Environment_Counter_Sink.gltf",
+      "sha256": "58d779cd427fab3013b93e18f433e0705a024bc8ea0a6127a42079acd406060e",
+      "size": 66007
+    },
+    {
+      "file": "Environment_Counter_Straight.gltf",
+      "assetId": "counter-straight-quaternius",
+      "name": "直线操作台",
+      "category": "building",
+      "style": "日式卡通低多边形",
+      "sourceMember": "environment/Environment_Counter_Straight.gltf",
+      "sha256": "2473d293db358c6f798cb699db8e8ae22e875d74b408f82e5d86338ea3d356f2",
+      "size": 46704
+    },
+    {
+      "file": "Environment_CuttingTable.gltf",
+      "assetId": "cutting-table-quaternius",
+      "name": "料理切配台",
+      "category": "building",
+      "style": "日式卡通低多边形",
+      "sourceMember": "environment/Environment_CuttingTable.gltf",
+      "sha256": "05ff68ed865e833bccca4764ed8f342804ad24bb0c32a67341c5e5f3e56f0e56",
+      "size": 36311
+    },
+    {
+      "file": "Environment_Fridge.gltf",
+      "assetId": "fridge-quaternius",
+      "name": "餐厅冰箱",
+      "category": "prop",
+      "style": "日式卡通低多边形",
+      "sourceMember": "environment/Environment_Fridge.gltf",
+      "sha256": "86838afce21b10b657ce2b224c1f02e8197e99ff1ce167ed2a7edc5954260e64",
+      "size": 77387
+    },
+    {
+      "file": "Environment_Oven.gltf",
+      "assetId": "oven-quaternius",
+      "name": "餐厅烤箱",
+      "category": "prop",
+      "style": "日式卡通低多边形",
+      "sourceMember": "environment/Environment_Oven.gltf",
+      "sha256": "d05162fdd6c67cd2556d1c71610b8410abcaa9ec8de6c6c0c853b8b965b456e3",
+      "size": 114068
+    },
+    {
+      "file": "Wall_RedWood.gltf",
+      "assetId": "wall-redwood-quaternius",
+      "name": "红木墙面",
+      "category": "building",
+      "style": "日式卡通低多边形",
+      "sourceMember": "environment/Wall_RedWood.gltf",
+      "sha256": "3dfbbd432e4b3bf4193c0a1f8affaa4c53e321ee28abe3948fe931bd5358e9d2",
+      "size": 47402
+    },
+    {
+      "file": "Wall_Shoji_Interior.gltf",
+      "assetId": "wall-shoji-quaternius",
+      "name": "障子室内墙",
+      "category": "building",
+      "style": "日式卡通低多边形",
+      "sourceMember": "environment/Wall_Shoji_Interior.gltf",
+      "sha256": "2a1539a03a55482d1276b4d9ed26b800d134b946a61de0c62c4b836495b29963",
+      "size": 20165
+    },
+    {
+      "file": "Food_Gyoza.gltf",
+      "assetId": "gyoza-quaternius",
+      "name": "煎饺食物",
+      "category": "prop",
+      "style": "日式卡通低多边形",
+      "sourceMember": "food/Food_Gyoza.gltf",
+      "sha256": "088d4cd9264504f54151f915379f354b85a6f08289ee2d35b288e29a9c84aa9c",
+      "size": 45343
+    },
+    {
+      "file": "Food_Onigiri.gltf",
+      "assetId": "onigiri-quaternius",
+      "name": "饭团食物",
+      "category": "prop",
+      "style": "日式卡通低多边形",
+      "sourceMember": "food/Food_Onigiri.gltf",
+      "sha256": "92d81f2bea3fd4303381ba9cb3aededd1885fae0570b49f5a09a8199c00ee39a",
+      "size": 25373
+    }
+  ],
+  "version": "1.0.0",
+  "retrievedAt": "2026-11-19"
+}
