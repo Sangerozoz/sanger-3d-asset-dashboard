@@ -162,13 +162,12 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   close.setAttribute('aria-label', '关闭资产详情');
   close.append(icon('close'));
   detail.append(close);
-  const pageTitle = el('h1', '');
   const modelsTab = action('3D 资产', '', () => switchSection(false));
   const animationsTab = action('骨骼动画', '', () => switchSection(true));
   const nav = el('nav', 'assetlib-nav', modelsTab, animationsTab);
   nav.setAttribute('aria-label', '资产导航');
   const library = el('section', 'assetlib-library',
-    el('div', 'assetlib-panel-title', el('div', 'assetlib-panel-heading', pageTitle, nav), el('div', 'assetlib-search', icon('search'), search, searchClear)),
+    el('div', 'assetlib-panel-title', nav, el('div', 'assetlib-search', icon('search'), search, searchClear)),
     filterForm, list);
   const brandName = '游戏资产';
   shell.append(
@@ -186,13 +185,12 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     closeDrawer();
     showingAnimations = animations;
     sectionAssets = assets.filter(asset => (asset.assetType === 'animation-rig') === animations);
-    pageTitle.textContent = animations ? animationsTab.textContent : modelsTab.textContent;
     modelsTab.setAttribute('aria-pressed', String(!animations));
     animationsTab.setAttribute('aria-pressed', String(animations));
     const sectionTypes = typeValues.filter(value => (value === 'animation-rig') === animations);
     const sectionStyles = [...new Set(sectionAssets.map(asset => asset.styleId))].sort();
-    renderFilterOptions(categoryOptions, 'assetType', '全部分类', sectionTypes.sort(), value => assetTypeNames[value] || value);
-    renderFilterOptions(styleOptions, 'styleId', '全部风格类型', sectionStyles, styleName);
+    renderFilterOptions(categoryOptions, 'assetType', '全部', sectionTypes.sort(), value => assetTypeNames[value] || value);
+    renderFilterOptions(styleOptions, 'styleId', '全部', sectionStyles, styleName);
     search.value = '';
     updateList();
   }
