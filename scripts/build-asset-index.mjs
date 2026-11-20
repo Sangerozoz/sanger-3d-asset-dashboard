@@ -241,6 +241,27 @@ async function outputFile(relative, bytes) {
   }
 }
 
+const modularRecord = await readJson(path.join(dashboard, 'data/chef-modular-kit.json'));
+const notesBytes = await readOptional(path.join(dashboard, 'data/chef-production-notes.json'));
+modularRecord.references = [];
+if (notesBytes !== null) {
+  const article = JSON.parse(notesBytes);
+  assert(Array.isArray(article.productionNotes) && Array.isArray(article.references), 'Invalid chef production notes');
+  modularRecord.productionNotes = article.productionNotes;
+  modularRecord.references = article.references;
+}
+for (const file of modularRecord.sourceFiles) await fs.access(path.join(dashboard, file));
+
+function addModularRecord(index, revisions) {
+  const kit = modularRecord.modularCharacter;
+  for (const [key, id] of [[kit.baseAssetKey, kit.baseAssetId], [kit.animationRigKey, kit.animationRigAssetId]]) {
+    assert(revisions.some(asset => asset.key === key && asset.assetId === id), 'Missing modular character dependency: ' + key);
+  }
+  const assets = [...revisions, modularRecord].sort((left, right) => Buffer.compare(Buffer.from(left.key), Buffer.from(right.key)));
+  const distinct = field => [...new Set(assets.map(asset => asset[field]))].sort();
+  return { ...index, filters: { styleIds: distinct('styleId'), assetTypes: distinct('assetType'), statuses: distinct('status') }, assets };
+}
+
 const factoryBaseline = path.join(factory, 'active-baseline.json');
 if (await readOptional(factoryBaseline) === null) {
   const checkedIndex = await readJson(path.join(output, 'asset-index.json'));
@@ -249,8 +270,9 @@ if (await readOptional(factoryBaseline) === null) {
   const indexedAnimationRigs = checkedIndex.assets.filter(asset => asset.assetType === 'animation-rig')
     .sort((left, right) => Buffer.compare(Buffer.from(left.key), Buffer.from(right.key)));
   assert.deepEqual(indexedAnimationRigs, animationRigs, 'Checked-in animation index is outdated');
+  const index = addModularRecord(checkedIndex, checkedIndex.assets.filter(asset => asset.key !== modularRecord.key));
   let mediaCount = 0;
-  for (const asset of checkedIndex.assets) {
+  for (const asset of index.assets) {
     for (const url of Object.values(asset.screenshots ?? {})) {
       if (url) {
         assert(await readOptional(path.join(output, url)) !== null, 'Missing indexed media: ' + url);
@@ -258,13 +280,14 @@ if (await readOptional(factoryBaseline) === null) {
       }
     }
     for (const reference of asset.references ?? []) {
-      if (reference.url) {
+      if (reference.url && !/^https?:\/\//i.test(reference.url)) {
         assert(await readOptional(path.join(output, reference.url)) !== null, 'Missing indexed media: ' + reference.url);
         mediaCount += 1;
       }
     }
   }
-  console.log('Verified checked-in asset-index.json with ' + checkedIndex.assets.length + ' revisions and ' + mediaCount + ' media references.');
+  await outputFile('asset-index.json', Buffer.from(JSON.stringify(index, null, 2) + '\n'));
+  console.log((checkOnly ? 'Verified' : 'Generated') + ' asset-index.json with ' + index.assets.length + ' revisions and ' + mediaCount + ' media references.');
   process.exit(0);
 }
 
@@ -279,7 +302,7 @@ for (const area of ['baselines', 'candidates']) {
 }
 assets.push(...await readAnimationRigs());
 assets.push(...await readOpenSourceAssets());
-assets.sort((left, right) => Buffer.compare(Buffer.from(left.key), Buffer.from(right.key)));
+assert(!assets.some(asset => asset.key === modularRecord.key), 'Duplicate modular character key');
 const byKey = new Map(assets.map(asset => [asset.key, asset]));
 for (const [styleId, style] of Object.entries(activeBaseline.styles)) {
   for (const [assetId, key] of Object.entries(style.assets ?? {})) {
@@ -289,13 +312,8 @@ for (const [styleId, style] of Object.entries(activeBaseline.styles)) {
     'Invalid active baseline: ' + [styleId, assetId, key].join(' / '));
   }
 }
-const distinct = field => [...new Set(assets.map(asset => asset[field]))].sort();
-const index = {
-  schemaVersion: 1, activeBaseline, fixedViews,
-  filters: { styleIds: distinct('styleId'), assetTypes: distinct('assetType'), statuses: distinct('status') },
-  assets,
-};
+const index = addModularRecord({ schemaVersion: 1, activeBaseline, fixedViews }, assets);
 for (const [file, bytes] of media) await outputFile(file, bytes);
 await outputFile('asset-index.json', Buffer.from(JSON.stringify(index, null, 2) + '\n'));
-console.log((checkOnly ? 'Verified' : 'Generated') + ' asset-index.json with ' + assets.length + ' revisions, '
+console.log((checkOnly ? 'Verified' : 'Generated') + ' asset-index.json with ' + index.assets.length + ' revisions, '
   + assets.filter(asset => asset.isActive).length + ' active baselines and ' + media.size + ' media files.');

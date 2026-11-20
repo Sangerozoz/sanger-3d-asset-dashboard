@@ -119,7 +119,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   let mode = 'image';
   let shotIndex = 0;
   let stopPreview = () => {};
-  let showingAnimations;
+  let activeSection;
   let sectionAssets;
   const shell = el('div', 'assetlib-dashboard');
   const search = el('input');
@@ -162,9 +162,9 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   close.setAttribute('aria-label', '关闭资产详情');
   close.append(icon('close'));
   detail.append(close);
-  const modelsTab = action('3D 资产', '', () => switchSection(false));
-  const animationsTab = action('骨骼动画', '', () => switchSection(true));
-  const nav = el('nav', 'assetlib-nav', modelsTab, animationsTab);
+  const tabs = ['3D 资产', '骨骼动画', '制作方案'].map(label =>
+    action(label, '', () => switchSection(label)));
+  const nav = el('nav', 'assetlib-nav', ...tabs);
   nav.setAttribute('aria-label', '资产导航');
   const library = el('section', 'assetlib-library',
     el('div', 'assetlib-panel-title', nav, el('div', 'assetlib-search', icon('search'), search, searchClear)),
@@ -178,16 +178,21 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
   root.replaceChildren(shell);
   backdrop.onclick = closeDrawer;
   document.addEventListener('keydown', onKeydown);
-  switchSection(false);
+  switchSection('3D 资产');
 
-  function switchSection(animations) {
-    if (showingAnimations === animations) return;
+  function sectionForType(type) {
+    if (type === 'modular-character') return '制作方案';
+    if (type === 'animation-rig') return '骨骼动画';
+    return '3D 资产';
+  }
+
+  function switchSection(section) {
+    if (activeSection === section) return;
     closeDrawer();
-    showingAnimations = animations;
-    sectionAssets = assets.filter(asset => (asset.assetType === 'animation-rig') === animations);
-    modelsTab.setAttribute('aria-pressed', String(!animations));
-    animationsTab.setAttribute('aria-pressed', String(animations));
-    const sectionTypes = typeValues.filter(value => (value === 'animation-rig') === animations);
+    activeSection = section;
+    sectionAssets = assets.filter(asset => sectionForType(asset.assetType) === section);
+    for (const tab of tabs) tab.setAttribute('aria-pressed', String(tab.textContent === section));
+    const sectionTypes = typeValues.filter(type => sectionForType(type) === section);
     const sectionStyles = [...new Set(sectionAssets.map(asset => asset.styleId))].sort();
     renderFilterOptions(categoryOptions, 'assetType', '全部', sectionTypes.sort(), value => assetTypeNames[value] || value);
     renderFilterOptions(styleOptions, 'styleId', '全部', sectionStyles, styleName);
@@ -272,9 +277,11 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       if (a.animation) {
         stage.append(el('div', 'assetlib-placeholder', icon('cube'), '动作骨骼暂不提供播放器预览', el('small', '', a.animation.fileUrl ? '已登记文件，可从元数据链接打开。' : '尚未登记可用的文件。')));
         renderAnimationSections(a);
+        renderModularCharacterSection(a);
         return;
       }
       attachPreview(stage, a);
+      renderModularCharacterSection(a);
       return;
     }
     const shots = a.shots;
@@ -283,6 +290,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       stage.append(el('div', 'assetlib-placeholder', icon('image'), '暂无截图'));
       if (a.animation) renderAnimationSections(a);
       if (a.source) renderSourceSection(a);
+      renderModularCharacterSection(a);
       return;
     }
     const label = viewNames[shot.view] || shot.view;
@@ -303,6 +311,7 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
     detail.append(el('div', 'assetlib-strip-label', el('h3', '', '截图视图'), el('code', '', String(shots.length))), strip);
     if (a.animation) renderAnimationSections(a);
     if (a.source) renderSourceSection(a);
+    renderModularCharacterSection(a);
   }
 
   function renderSourceSection(asset) {
@@ -315,6 +324,32 @@ export function mountAssetDashboard(root, { index, previewAdapter }) {
       ['许可链接', safeLink('查看许可', source.licenseUrl)],
       ['资产文件', safeLink('打开文件', source.fileUrl)],
       ['风格标签', arrayText(asset.tags)],
+    ])));
+  }
+
+  function renderModularCharacterSection(asset) {
+    if (asset.assetType !== 'modular-character') return;
+    if (asset.productionNotes?.length) {
+      detail.append(el('section', 'assetlib-detail-section', el('h3', '', '制作笔记'),
+        metadataList(asset.productionNotes.map(note => [note.title, note.body]))));
+    }
+    if (asset.references?.length) {
+      const references = asset.references.map(ref => el('li', '', ref.url ? safeLink(ref.title, ref.url) : ref.title));
+      detail.append(el('section', 'assetlib-detail-section', el('h3', '', '参考资料'),
+        el('ul', 'assetlib-references', ...references)));
+    }
+    const modular = asset.modularCharacter;
+    if (!modular) return;
+    const components = modular.components?.map(component =>
+      `${component.slot}：${component.displayName}（${component.status}）`) ?? [];
+    detail.append(el('section', 'assetlib-detail-section', el('div', 'assetlib-section-label', '模块化角色'), metadataList([
+      ['角色基座', valueOr(modular.baseAssetId)],
+      ['骨架资产', valueOr(modular.animationRigAssetId)],
+      ['计划骨架', valueOr(modular.plannedSkeleton)],
+      ['已验证兼容骨架', arrayText(modular.skeletonCompatibility)],
+      ['装备槽位', arrayText(modular.slots)],
+      ['组件清单', arrayText(components)],
+      ['接入状态', valueOr(modular.integrationStatus)],
     ])));
   }
 

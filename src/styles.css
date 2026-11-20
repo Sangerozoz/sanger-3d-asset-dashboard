@@ -114,7 +114,8 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-meta-list > div { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 10px; align-items: start; }
 .assetlib-meta-list dt { color: var(--muted); font-size: 12px; }
 .assetlib-meta-list dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
-.assetlib-meta-list .assetlib-original { display: inline-flex; width: fit-content; }
+.assetlib-references { display: grid; gap: 6px; margin: 10px 0 0; padding-inline-start: 20px; overflow-wrap: anywhere; }
+.assetlib-detail-section .assetlib-original { position: static; max-width: 100%; }
 .assetlib-missing { color: var(--muted); }
 .assetlib-placeholder small { color: var(--muted); text-align: center; }
 @media (max-width: 850px) {
@@ -169,6 +170,8 @@ body:has(#app > .assetlib-dashboard) { margin: 0; background: #f5f6f3; }
 .assetlib-detail-head { padding-right: 42px; }
 @media (max-width: 700px) {
   .assetlib-content { padding: 18px 12px 28px; }
+  .assetlib-panel-title .assetlib-nav { flex-wrap: wrap; }
+  .assetlib-panel-title .assetlib-nav button { font-size: 18px; padding-inline: 6px; }
   .assetlib-panel-title { align-items: flex-start; flex-wrap: wrap; }
   .assetlib-panel-title .assetlib-search { width: min(350px, 100%); max-width: 100%; flex: 1 1 350px; }
   .assetlib-search-clear { width: 28px; height: 28px; }

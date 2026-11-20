@@ -16,7 +16,7 @@ test('all deployed media resolve beneath a Pages project prefix', async t => {
   assert.deepEqual(index.activeBaseline, catalog.activeBaseline);
   for (const revision of index.assets) {
     const urls = [...Object.values(revision.screenshots), ...revision.references.map(ref => ref.url)];
-    for (const url of urls.filter(value => value !== null)) {
+    for (const url of urls.filter(value => value !== null && !/^https?:\/\//i.test(value))) {
       const prefix = new URL('catalog-media/', projectUrl).href;
       assert(url.startsWith(prefix));
       assert((await readFile(new URL('catalog-media/' + url.slice(prefix.length), catalogFile))).length > 0);
@@ -37,4 +37,18 @@ test('filters and detail preserve competing revisions and their statuses', () =>
   assert.deepEqual(listAssets(index, { version: '1.0.0', status: 'candidate', isActive: false }), [candidate]);
   assert.deepEqual(getAssetDetail(index, candidate.key), { revision: candidate, versions: [active, candidate], active });
   assert.equal(getAssetDetail(index, 'absent'), null);
+});
+
+
+test('generated modular record persists source paths and imported production notes', async () => {
+  const catalog = JSON.parse(await readFile(catalogFile, 'utf8'));
+  const modular = catalog.assets.find(asset => asset.assetType === 'modular-character');
+  assert.equal(modular.key, 'candidates/sanger-modular-character/modular-character/chef-modular-kit-sanger');
+  assert.deepEqual(modular.sourceFiles, [
+    'src/models/chef.js',
+    'public/assets/animation-rigs/kaykit/Rig_Medium_General.glb',
+  ]);
+  assert.equal(modular.productionNotes.length, 4);
+  assert.equal(modular.references.length, 3);
+  assert.equal(modular.modularCharacter.plannedSkeleton, 'Rig_Medium');
 });

@@ -1,0 +1,85 @@
+{
+  "key": "candidates/sanger-modular-character/modular-character/chef-modular-kit-sanger",
+  "assetId": "chef-modular-kit-sanger",
+  "displayName": "模块化厨师装备套件（Sanger）",
+  "styleId": "sanger-rounded-toy",
+  "styleLabel": "Sanger 圆润玩具",
+  "assetType": "modular-character",
+  "assetTypeLabel": "模块化角色",
+  "version": "0.1.0",
+  "status": "candidate",
+  "isActive": false,
+  "screenshots": {
+    "front": null,
+    "three-quarter": null,
+    "side": null,
+    "back": null,
+    "clay": null
+  },
+  "declaredViews": [],
+  "sourceFiles": [
+    "src/models/chef.js",
+    "public/assets/animation-rigs/kaykit/Rig_Medium_General.glb"
+  ],
+  "generatedAt": null,
+  "modularCharacter": {
+    "baseAssetId": "chef-sanger",
+    "baseAssetKey": "baselines/sanger-rounded-toy/character/chef-sanger",
+    "animationRigAssetId": "rig_medium_general",
+    "animationRigKey": "candidates/kaykit-character-animations/animation-rig/rig_medium_general",
+    "skeletonCompatibility": [],
+    "slots": [
+      "head",
+      "torso",
+      "legs",
+      "feet",
+      "hand-prop"
+    ],
+    "components": [
+      {
+        "componentId": "chef-hat",
+        "displayName": "厨师帽",
+        "slot": "head",
+        "status": "planned"
+      },
+      {
+        "componentId": "chef-apron",
+        "displayName": "围裙",
+        "slot": "torso",
+        "status": "planned"
+      },
+      {
+        "componentId": "chef-tray",
+        "displayName": "餐盘",
+        "slot": "hand-prop",
+        "status": "planned"
+      },
+      {
+        "componentId": "chef-knife",
+        "displayName": "菜刀",
+        "slot": "hand-prop",
+        "status": "planned"
+      }
+    ],
+    "integrationStatus": "计划接入 Rig_Medium，待验证蒙皮、挂点及动画播放",
+    "notes": "rig_medium_general 为拟用动作资源，厨师基座与其骨架的兼容性待验证。",
+    "plannedSkeleton": "Rig_Medium"
+  },
+  "validation": {
+    "status": "review_required",
+    "generatedAt": null,
+    "checks": {
+      "baseAsset": true,
+      "animationRigFile": true,
+      "rigCompatibility": false,
+      "componentAssets": false,
+      "anchors": false,
+      "playback": false
+    },
+    "scores": null,
+    "errors": [],
+    "warnings": [
+      "当前记录只建立模块化资产契约，组件模型、挂点和实际播放尚未接入。"
+    ]
+  }
+}

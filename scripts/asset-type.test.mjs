@@ -14,6 +14,7 @@ const base = 'https://pages.invalid/project/assets/asset-index.json';
 test('labels retain every existing type and add animation-rig', () => {
   assert.deepEqual(assetTypeNames, {
     character: '角色', vehicle: '载具', building: '建筑', prop: '道具', 'animation-rig': '动作骨骼',
+    'modular-character': '模块化角色',
   });
   assert(Object.isFrozen(assetTypeNames));
 });

@@ -31,6 +31,7 @@
       "animation-rig",
       "building",
       "character",
+      "modular-character",
       "prop"
     ],
     "statuses": [
@@ -2360,6 +2361,123 @@
           "模型文件已做静态文件校验，未接入当前内置角色播放器。"
         ]
       }
+    },
+    {
+      "key": "candidates/sanger-modular-character/modular-character/chef-modular-kit-sanger",
+      "assetId": "chef-modular-kit-sanger",
+      "displayName": "模块化厨师装备套件（Sanger）",
+      "styleId": "sanger-rounded-toy",
+      "styleLabel": "Sanger 圆润玩具",
+      "assetType": "modular-character",
+      "assetTypeLabel": "模块化角色",
+      "version": "0.1.0",
+      "status": "candidate",
+      "isActive": false,
+      "screenshots": {
+        "front": null,
+        "three-quarter": null,
+        "side": null,
+        "back": null,
+        "clay": null
+      },
+      "declaredViews": [],
+      "sourceFiles": [
+        "src/models/chef.js",
+        "public/assets/animation-rigs/kaykit/Rig_Medium_General.glb"
+      ],
+      "generatedAt": null,
+      "modularCharacter": {
+        "baseAssetId": "chef-sanger",
+        "baseAssetKey": "baselines/sanger-rounded-toy/character/chef-sanger",
+        "animationRigAssetId": "rig_medium_general",
+        "animationRigKey": "candidates/kaykit-character-animations/animation-rig/rig_medium_general",
+        "skeletonCompatibility": [],
+        "slots": [
+          "head",
+          "torso",
+          "legs",
+          "feet",
+          "hand-prop"
+        ],
+        "components": [
+          {
+            "componentId": "chef-hat",
+            "displayName": "厨师帽",
+            "slot": "head",
+            "status": "planned"
+          },
+          {
+            "componentId": "chef-apron",
+            "displayName": "围裙",
+            "slot": "torso",
+            "status": "planned"
+          },
+          {
+            "componentId": "chef-tray",
+            "displayName": "餐盘",
+            "slot": "hand-prop",
+            "status": "planned"
+          },
+          {
+            "componentId": "chef-knife",
+            "displayName": "菜刀",
+            "slot": "hand-prop",
+            "status": "planned"
+          }
+        ],
+        "integrationStatus": "计划接入 Rig_Medium，待验证蒙皮、挂点及动画播放",
+        "notes": "rig_medium_general 为拟用动作资源，厨师基座与其骨架的兼容性待验证。",
+        "plannedSkeleton": "Rig_Medium"
+      },
+      "validation": {
+        "status": "review_required",
+        "generatedAt": null,
+        "checks": {
+          "baseAsset": true,
+          "animationRigFile": true,
+          "rigCompatibility": false,
+          "componentAssets": false,
+          "anchors": false,
+          "playback": false
+        },
+        "scores": null,
+        "errors": [],
+        "warnings": [
+          "当前记录只建立模块化资产契约，组件模型、挂点和实际播放尚未接入。"
+        ]
+      },
+      "references": [
+        {
+          "title": "sonic0828 · 用 Codex 做小游戏，美术这块我踩过哪些坑？",
+          "url": "https://x.com/sonic0828/status/2122153293719990635"
+        },
+        {
+          "title": "黑箱之外 · 一个模型制作八方向动画",
+          "url": "https://x.com/beyondtheboxcn/status/2123748204969595314"
+        },
+        {
+          "title": "Ludo · Directional Sprites 原始演示",
+          "url": "https://x.com/Ludo_AI/status/2123106460955738612"
+        }
+      ],
+      "productionNotes": [
+        {
+          "title": "同一组道具一起定稿",
+          "body": "第一篇用货柜商品举例。先把一组道具放在同一张图里比较视角、比例和轮廓，再拆成独立素材。我们可以把食材排进实际游戏格子，在手机显示尺寸下找出看不清的几件，单独重做。"
+        },
+        {
+          "title": "让画面告诉玩家下一步怎么做",
+          "body": "第一篇还讨论了玩法状态和界面复用。比如烹饪游戏里，生、熟、焦要在小屏上也能一眼分清。结算弹层可以共用一套底板和按钮，分数、份数与奖励交给游戏代码填写。"
+        },
+        {
+          "title": "从一个 3D 角色导出八方向精灵图",
+          "body": "第二篇转述了 Ludo 的狐狸演示。给同一个模型配好装备后，从八个方向输出动作序列，2D 游戏便能按移动方向切换帧。换帽子或手持物时可以复用模型、动作和机位，减少逐方向重画的工作。"
+        },
+        {
+          "title": "我们的厨师小样怎么做",
+          "body": "先选一个行走循环，验证厨师模型能否播放目标动作。固定相机角度、八个朝向、光照和脚底锚点，导出一套透明序列帧。在游戏里绕一圈，看切向是否跳位、脚底是否滑动、背向时餐盘是否穿过身体。通过后再扩展端盘跑步和其他装扮。当前阶段为制作方案，八方向成品待制作。"
+        }
+      ]
     }
   ]
 }

@@ -5,6 +5,7 @@ export const assetTypeNames = Object.freeze({
   building: '建筑',
   prop: '道具',
   'animation-rig': '动作骨骼',
+  'modular-character': '模块化角色',
 });
 
 /** Machine values used by the first audited KayKit animation package. */
